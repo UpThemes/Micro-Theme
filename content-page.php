@@ -16,8 +16,4 @@
 	    <?php the_content(); ?>
     </div>
 		
-	<?php micro_post_footer(); ?>
-
 </div>
-
-<?php micro_comments(); ?>
