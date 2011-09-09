@@ -1,5 +1,7 @@
 <?php
 
+define('THEME_NAME','micro');
+
 require_once('admin/admin.php'); 
 require_once('inc/extensions/header-extensions.php');
 require_once('inc/extensions/comments-extensions.php');
@@ -12,11 +14,12 @@ require_once('inc/hooks.php');
 require_once('inc/navigation.php');
 require_once('inc/expressapp.php');
 require_once('inc/metaboxes/tumblog-meta.php');
+require_once('inc/update.php');
 
 function micro_set_content_width(){
 
 	define('CONTENT_WIDTH',500);
-		
+
 	global $content_width;
 
 	$content_width = CONTENT_WIDTH;
