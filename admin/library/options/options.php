@@ -830,10 +830,10 @@ function upfw_typography($value,$attr){
     	$option = $value['value'];
     endif;
 
-    $family  = $option['font'] ? $option['font'] : $option['family'][''];
-    $fontsize  = $option['fontsize'] ? $option['fontsize']: '12px';
+    $family  = $option['font'] ? $option['font'] : $value['default'];
+    $fontsize  = $option['fontsize'] ? $option['fontsize']: $value['fontsize'];
     $fontstyle  = $option['fontstyle'] ? $option['fontstyle']: 'normal';
-    $lineheight = $option['lineheight'] ? $option['lineheight'] : '16px';
+    $lineheight = $option['lineheight'] ? $option['lineheight'] : $value['lineheight'];
     $texttransform = $option['texttransform'] ? $option['texttransform'] : 'none';
     $fontweight = $option['fontweight'] ? $option['fontweight'] : 'normal';
     $textdecoration = $option['textdecoration'] ? $option['textdecoration'] : 'none';
@@ -877,6 +877,8 @@ function upfw_typography($value,$attr){
 	                            </select>
 	                        
 	                            <?php /* Update WP Options */
+                                //delete_option('up_themes_'.UPTHEMES_SHORT_NAME.'_custom_fonts');
+                                //delete_option('up_themes_'.UPTHEMES_SHORT_NAME.'_fonts');
 	                            $fonts_option = get_option('up_themes_'.UPTHEMES_SHORT_NAME.'_fonts');
 	                            $custom_fonts_option = get_option('up_themes_'.UPTHEMES_SHORT_NAME.'_custom_fonts');
 	                            $new_font[$value['id']][$option['font']] = array(
@@ -917,14 +919,21 @@ function upfw_typography($value,$attr){
 						</div>
 	
 						<div class="field">
-	                        <label class="font-label" for="<?php echo $value['id']; ?>_fontweight"><?php _e('Font Weight','upfw'); ?></label>
+                            <label class="font-label" for="<?php echo $value['id']; ?>_fontweight"><?php _e('Font Weight','upfw'); ?></label>
 	                        <select id="<?php echo $value['id']; ?>_fontweight" name="<?php echo $value['id']; ?>[fontweight]">
-	                            <option value="normal" <?php if($fontweight=='normal') echo "selected";?>><?php _e("Normal","upfw"); ?></option>
-	                            <option value="bold" <?php if($fontweight=='bold') echo "selected";?>><?php _e("Bold","upfw"); ?></option>
+                                <?php $weights = $fonts[$family]['weights'];
+                                if(!$weights):?>
+                                    <option value="normal" <?php if($fontweight=='normal') echo "selected";?>><?php _e("Normal","upfw"); ?></option>
+                                    <!--<option value="bold" <?php //if($fontweight=='bold') echo "selected";?>><?php //_e("Bold","upfw"); ?></option>-->
+                                <?php elseif(is_array($weights)): ?>
+                                    <?php foreach($weights as $name => $weight):?>
+                                        <option value="<?php echo $weight;?>" <?php if($fontweight==$weight) echo "selected";?>><?php echo $name;?></option>
+                                    <?php endforeach;?>
+                                <?php endif;?>
 	                        </select>
 	                        <kbd><?php _e("Please Note: Some fonts do not have additional weights. In many cases, the below preview will not accurately reflect font weight."); ?></kbd>
 						</div>
-						
+					
 						<div class="field">
 	                        <label class="font-label" for="<?php echo $value['id']; ?>_textshadow"><?php _e('Text Shadow','upfw'); ?></label>
 	                        <select id="<?php echo $value['id']; ?>_textshadow" name="<?php echo $value['id']; ?>[textshadow]">
@@ -1055,8 +1064,41 @@ function upfw_typography($value,$attr){
 
                 /* Font Family */
                 $("#<?php echo $value['id']; ?>_font").live('change', function(e){
-                    var stylesheet = $(this).find(':selected')[0].title;
-                    var selector = $(this).find(':selected')[0].id;
+                	
+                	_$this = $(this);
+                	family = _$this.val();
+                	
+                	$.getJSON(ajaxurl+"?action=get_font_weight_options&font="+family, function(data){
+	                	
+						if(data.success && data.html){
+							$("#<?php echo $value['id']; ?>_fontweight").html(data.html);
+
+		                    var stylesheet = _$this.find(':selected')[0].title;
+		                    var selector = _$this.find(':selected')[0].id;
+		                    var link = $('.<?php echo $value['id']; ?>-import-style');
+		                    if(stylesheet){
+                                if(/css/i.test(stylesheet)){
+                                    link.attr('href', stylesheet);
+                                }
+                                else{
+                                    link.attr('href', stylesheet+':'+$("#<?php echo $value['id']; ?>_fontweight").val());
+                                }
+		                    }else{
+		                        $('head').append('<link class="<?php echo $value['id']; ?>-import-style" rel="stylesheet" type="text/css" href="'+stylesheet+'" />');
+		                    }
+		                    $(".<?php echo $value['id']; ?>_type_preview").css('font-family', selector);
+                		}
+
+                	});
+                
+					
+                });
+                
+                /* Font Weight Change */
+                $("#<?php echo $value['id']; ?>_fontweight").live('change', function(e){
+                    var stylesheet = $("#<?php echo $value['id']; ?>_font").find(':selected')[0].title;
+                    stylesheet = stylesheet+':'+$(this).val();
+                    var selector = $("#<?php echo $value['id']; ?>_font").find(':selected')[0].id;
                     var link = $('.<?php echo $value['id']; ?>-import-style');
                     if(link){
                         link.attr('href', stylesheet);
@@ -1064,7 +1106,7 @@ function upfw_typography($value,$attr){
                         $('head').append('<link class="<?php echo $value['id']; ?>-import-style" rel="stylesheet" type="text/css" href="'+stylesheet+'" />');
                     }
                     $(".<?php echo $value['id']; ?>_type_preview").css('font-family', selector);
-                });
+                });                
 
                 /* Font Weight */
                 $("#<?php echo $value['id']; ?>_fontweight").live('change', function(e){
@@ -1169,7 +1211,7 @@ function upfw_style($value,$attr){
 }
 
 function upfw_layouts($value,$attr){
-    global $up_options,$wpdb;
+    global $up_options,$wpdb, $up_layouts; 
 ?>
 
                 <li class="type-<?php echo $value['type'];?>" id="container-<?php echo $value['id'];?>">
@@ -1195,23 +1237,21 @@ function upfw_layouts($value,$attr){
                             <input type="hidden" id="layout-<?php echo $value['id'];?>" name="<?php echo $value['id'];?>" value="<?php echo $up_options->$value['id'];?>" />
                             <div class="up-layout-container">
                                 <?php global $up_layouts;
-                                delete_option('up_themes_'.UPTHEMES_SHORT_NAME.'_layouts');
+                                //delete_option('up_themes_'.UPTHEMES_SHORT_NAME.'_layouts');
 
                                 if( $up_layouts ):
-
                                 foreach($up_layouts as $up_layout):
-                                    global $up_options;
                                     $selected = ($up_options->$value['id'] == $up_layout['style']) ? ' up-layout-active' : '';
                                     if($selected):
                                         //Add layout to enqueue_theme_layout()
                                         $context = $value['context'] ? $value['context'] : 'global';
-                                        $layouts = get_option('up_themes_'.UPTHEMES_SHORT_NAME.'_layout');
+                                        $layouts = get_option('up_themes_'.UPTHEMES_SHORT_NAME.'_layouts');
                                         $layout[$context] = array('id' => $up_layout['id']);
                                         if(is_array($layouts)):
                                             $layouts = array_merge($layouts, $layout);
                                             update_option('up_themes_'.UPTHEMES_SHORT_NAME.'_layouts', $layouts);
                                         else:
-                                            update_option('up_themes_'.UPTHEMES_SHORT_NAME.'_layouts', $layout);
+                                            add_option('up_themes_'.UPTHEMES_SHORT_NAME.'_layouts', $layout);
                                         endif;
                                     endif;?>
                                     <a class="up-layout up-layout-<?php echo $value['id'].$selected;?>" href="<?php echo $up_layout['style'];?>" rel="<?php echo $up_layout['style'];?>"><span><em><?php echo $up_layout['name'];?></em></span><img src="<?php echo $up_layout['image'];?>" alt="<?php echo $up_layout['name'];?>" id="<?php echo $up_layout['id'];?>" /></a>
@@ -1226,4 +1266,4 @@ function upfw_layouts($value,$attr){
                 </li>
                 
 <?php
-}
+} ?>

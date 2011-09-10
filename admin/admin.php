@@ -51,10 +51,10 @@ function upfw_generate_theme_data(){
 
 	if( file_exists(TEMPLATEPATH.'/admin/admin.php') ):
 		define( 'THEME_PATH' , TEMPLATEPATH );
-		define( 'THEME_DIR' , get_bloginfo("template_directory") );
+		define( 'THEME_DIR' , get_template_directory_uri() );
 	elseif( file_exists(STYLESHEETPATH.'/admin/admin.php') ):
 		define( 'THEME_PATH' , STYLESHEETPATH );
-		define( 'THEME_DIR' , get_bloginfo("stylesheet_directory") );
+		define( 'THEME_DIR' , get_stylesheet_directory_uri() );
 	endif;
 	
 	// Detect child theme info
@@ -133,7 +133,7 @@ function upfw_set_uploads_dir(){
 				add_action( 'admin_notices', 'upfw_permissions_error', 1, 1 );
 			else{
 				$oldumask = umask(0);
-				@mkdir($base_upload_dir, 0777);
+				@mkdir($base_upload_dir, 0775);
 				umask($oldumask);
 				
 				if( is_writeable( $base_upload_dir ) )
@@ -280,6 +280,69 @@ function show_gallery_images(){
 	closedir($dir_handle);
 	die();
 
+}
+
+/**
+ * Get current template context
+ * 
+ * Returns a string containing the context of the
+ * current page template. This string is useful for several
+ * purposes, including applying an ID to the HTML
+ * body tag, and adding a contextual $name to calls
+ * to get_header(), get_footer(), get_sidebar(), 
+ * and get_template_part_file(), in order to 
+ * facilitate Child Themes overriding default Theme
+ * template part files.
+ * 
+ * @param	none
+ * @return	string	current page template context
+ */
+function upfw_get_template_context() {
+
+	$context = 'index';
+	
+	if ( is_front_page() ) {
+		// Front Page
+		$context = 'front-page';
+	} else if ( is_date() ) {
+		// Date Archive Index
+		$context = 'date';
+	} else if ( is_author() ) {
+		// Author Archive Index
+		$context = 'author';
+	} else if ( is_category() ) {
+		// Category Archive Index
+		$context = 'category';
+	} else if ( is_tag() ) {
+		// Tag Archive Index
+		$context = 'tag';
+	} else if ( is_tax() ) {
+		// Taxonomy Archive Index
+		$context = 'taxonomy';
+	} else if ( is_archive() ) {
+		// Archive Index
+		$context = 'archive';
+	} else if ( is_search() ) {
+		// Search Results Page
+		$context = 'search';
+	} else if ( is_404() ) {
+		// Error 404 Page
+		$context = '404';
+	} else if ( is_attachment() ) {
+		// Attachment Page
+		$context = 'attachment';
+	} else if ( is_single() ) {
+		// Single Blog Post
+		$context = 'single';
+	} else if ( is_page() ) {
+		// Static Page
+		$context = 'page';
+	} else if ( is_home() ) {
+		// Blog Posts Index
+		$context = 'home';
+	}
+	
+	return $context;
 }
 
 add_action('wp_ajax_show_gallery_images','show_gallery_images');
@@ -685,7 +748,7 @@ function upfw_admin_header(){
 ** Open admin header
 *************************************/
 function upfw_admin_header_open(){ ?>
-		<div id="up_header" class="polish"><?php
+	<div id="up_header" class="polish"><?php
 }
 
 add_action('upfw_admin_header','upfw_admin_header_open',1);
@@ -694,8 +757,8 @@ add_action('upfw_admin_header','upfw_admin_header_open',1);
 ** Set admin header title
 *************************************/
 function upfw_admin_header_title(){ ?>
-			<div id="icon-upfw" class="icon32 icon32-upfw"></div>
-            <h2><?php _e("Theme Options","upfw"); ?></h2> <?php
+	<div id="icon-upfw" class="icon32 icon32-upfw"></div>
+	<h2><?php _e("Theme Options","upfw"); ?></h2> <?php
 }
 
 add_action('upfw_admin_header','upfw_admin_header_title',100);
@@ -704,9 +767,9 @@ add_action('upfw_admin_header','upfw_admin_header_title',100);
 ** Create admin header links
 *************************************/
 function upfw_admin_header_links(){ ?>
-			<ul id="up_topnav">
-				<?php do_action('upfw_admin_header_links'); ?>
-			</ul><!-- /#up_topnav --><?php
+	<ul id="up_topnav">
+		<?php do_action('upfw_admin_header_links'); ?>
+	</ul><!-- /#up_topnav --><?php
 }
 
 add_action('upfw_admin_header','upfw_admin_header_links',50);
@@ -729,9 +792,9 @@ add_action('upfw_admin_header','upfw_admin_header_close',500);
 *************************************/
 function upfw_default_header_links(){ ?>
 
-				<li class="support"><a href="http://upthemes.com/forum/"><?php _e("Support","upfw"); ?></a></li>
-				<li class="documentation"><a href="<?php echo get_admin_url(); ?>admin.php?page=upthemes-docs"><?php _e("Theme Documentation","upfw"); ?></a></li>
-				<li class="buy-themes"><a href="<?php echo get_admin_url(); ?>admin.php?page=upthemes-buy"><?php _e("Buy Themes","upfw"); ?></a></li> <?php	
+	<li class="support"><a href="http://upthemes.com/forum/"><?php _e("Support","upfw"); ?></a></li>
+	<li class="documentation"><a href="<?php echo get_admin_url(); ?>admin.php?page=upthemes-docs"><?php _e("Theme Documentation","upfw"); ?></a></li>
+	<li class="buy-themes"><a href="<?php echo get_admin_url(); ?>admin.php?page=upthemes-buy"><?php _e("Buy Themes","upfw"); ?></a></li> <?php	
 
 }
 
