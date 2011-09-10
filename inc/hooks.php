@@ -63,6 +63,38 @@ function micro_comments(){
 	do_action('micro_comments');
 }
 
+/**
+ * Action hook after content within div#comments
+ * 
+ * This action hook fires after content is output in the div#comments container. It
+ * can be used to add content after post comments content is output.
+ * 
+ * Template file: comments.php
+ * 
+ * @uses do_action()
+ * 
+ * @since Micro 1.0
+ */
+function micro_after_comments() {
+	do_action( 'micro_after_comments' );
+}
+
+/**
+ * Action hook before content within div#comments
+ * 
+ * This action hook fires before content is output in the div#comments container. It
+ * can be used to add content before post comments content is output.
+ * 
+ * Template file: comments.php
+ * 
+ * @uses do_action()
+ * 
+ * @since Micro 1.0
+ */
+function micro_before_comments() {
+	do_action( 'micro_before_comments' );
+}
+
 function micro_postmeta(){
 	do_action('micro_postmeta');
 }
