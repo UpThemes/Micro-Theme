@@ -1,0 +1,82 @@
+@media screen and (max-width:800px) {
+
+	body{
+		width: auto;
+		padding: 10px 20px;
+	}
+
+	h1.title,
+	h2.title{
+		font-size: 1.3em;
+		line-height: 1.2em;
+	}
+
+	#main,
+	.container{
+		width: auto;
+	}
+	
+	#primary{
+		width: 26%;
+	}
+	
+	#content{
+		width: 70%;
+	}
+
+	#content img,
+	#content video,
+	#content object,
+	#content audio{
+		width: auto;
+		max-width: 100%;
+		height: auto !important;
+		margin: 0 auto;
+	}
+
+}
+
+@media screen and (max-width:480px) {
+	
+	.mobile_site_header{
+		display: block;
+	}
+	
+	#content,
+	#primary,
+	#main{
+		float: none;
+		width: auto;
+	}
+	
+	#primary{
+		margin-top: 0;
+		width: auto;
+	}
+	
+	#primary .site-details{
+		display: none;
+	}
+	
+	#footer > *,
+	#footer > * > *{
+		float: none;
+		width: auto;
+		margin: 0 auto;
+	}
+	
+	#footer .two #first > aside, #footer .three #first > aside,
+	#footer .two #second > aside, #footer .three #third > aside{
+		margin-right: 0;
+		margin-left: 0;
+	}
+	
+	#footer .widget-area{
+		width: 100% !important;
+		margin: 0 auto 20 auto;
+		text-align: center;
+		float: none;
+		clear: both;
+	}
+
+}

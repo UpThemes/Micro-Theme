@@ -8,7 +8,6 @@ function micro_attach_navigation(){
 	
 	<div id="post-navigation">
 
-
 		<?php if( is_single() || is_page() ): ?>
 
 			<ul id="pages">
@@ -18,24 +17,6 @@ function micro_attach_navigation(){
 		
 		<?php else: ?>
 
-			<ul id="posts">
-				
-				<div id="maxposts" class="hide"><?php echo get_option('posts_per_page'); ?></div>
-				
-				<?php
-				
-				echo '<li class="next-post">';
-				echo '<a id="next-post-scroll" href="#"><span>' . __('Next Post','micro') . '</span></a>';
-				echo '</li>';
-				
-				echo '<li class="prev-post">';
-				echo '<a id="previous-post-scroll" href="#"><span>' . __('Previous Post','micro') . '</span></a>';
-				echo '</li>';
-				
-				?>
-				<li class="description"></li>
-			</ul>
-
 			<?php
 			$paged = get_query_var('paged');
 			$maxpage = $wp_query->max_num_pages;
@@ -43,15 +24,16 @@ function micro_attach_navigation(){
 			if( $maxpage > 1 ): ?>
 	
 			<ul id="pages">
-				<li class="number"><?php if( is_archive() || is_category() || is_tag() || is_home() || is_author() || is_search() ) get_the_page_count(); ?></li>
 				<?php
 
 				echo '<li class="prev-page">';
-				previous_posts_link( "<span>" . __('Older posts','micro') . "</span>" );
+				previous_posts_link( "<span>" . __('&larr; Older Posts','micro') . "</span>" );
 				echo '</li>';
-
+?>
+				<li class="number"><?php if( is_archive() || is_category() || is_tag() || is_home() || is_author() || is_search() ) get_the_page_count(); ?></li>
+<?php
 				echo '<li class="next-page">';
-				next_posts_link( "<span>" . __('Newer posts','micro') . "</span>" );
+				next_posts_link( "<span>" . __('Newer Posts &rarr;','micro') . "</span>" );
 				echo '</li>';
 
 				?>
@@ -69,7 +51,7 @@ function micro_attach_navigation(){
 
 }
 
-add_action('micro_above_content','micro_attach_navigation');
+add_action('micro_after_posts','micro_attach_navigation');
 
 function get_the_page_count(){
 

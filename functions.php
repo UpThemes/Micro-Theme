@@ -45,12 +45,21 @@ function micro_theme_init(){
 	add_theme_support( 'automatic-feed-links' );
 	register_nav_menu( 'primary', __('Navigation','micro') );
 
-	wp_enqueue_script('scrolling',get_bloginfo('template_directory') . '/inc/scripts/scrolling/scrolling.js' );
+	wp_enqueue_script('scrolling',get_template_directory_uri() . '/inc/scripts/scrolling/scrolling.js' );
 	
 	add_custom_background();
 
 }
+
 add_action('init','micro_theme_init');
+
+function micro_make_responsive(){
+
+	echo "<link href=\"" . get_template_directory_uri() . "/inc/styles/responsive.css\" type=\"text/css\" rel=\"stylesheet\" media=\"screen\">";
+
+}
+
+add_action('wp_head','micro_make_responsive',9999);
 
 //This cannot be contained in an init hook
 add_theme_support( 'post-thumbnails' );

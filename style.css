@@ -2,7 +2,7 @@
 Theme Name: Micro WP Microblog Framework
 Theme URI: http://upthemes.com/themes/micro/
 Description: The best microblog theme framework for WordPress.
-Version: 1.0
+Version: 1.1
 Author: Chris Wallace for <a href="http://upthemes.com">UpThemes</a>
 Tags: tumblelog, banner, fixed width, two columns
 */
@@ -1157,6 +1157,7 @@ div.searchresults{
 }
 
 .widgets_light #primary,
+.widgets_light .desc,
 .widgets_light #footer,
 .widgets_light .navigation,
 .widgets_light #primary a,
@@ -1189,7 +1190,7 @@ div.searchresults{
 .widgets_light #primary .site-details,
 .widgets_light #footer #supplementary,
 .widgets_light #footer .credits{
-	border-color: rgba(0,0,0,0.4);
+	border-color: rgba(255,255,255,0.3);
 }
 
 .widgets_dark #primary .site-details,
@@ -1202,46 +1203,14 @@ div.searchresults{
 
 /* @group Navigation Bar Styles */
 
-#post-navigation{ padding: 6px; background: #f9f9f9; margin-bottom: 20px; position: fixed; top: 0; left: 0; right: 0; z-index: 40; border-bottom: 1px solid rgba(0,0,0,0.3); text-align: left; background-image: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    color-stop(0.26, rgb(240,240,240)),
-    color-stop(0.63, rgb(245,245,245))
-);
-background-image: -moz-linear-gradient(
-    center bottom,
-    rgb(235,235,235) 26%,
-    rgb(245,245,245) 63%
-); }
-#post-navigation ul#pages{ float: right; }
-#post-navigation ul,
-#post-navigation li{ float: left; display: inline; margin-bottom: 0; }
+#post-navigation{ margin-bottom: 20px; text-align: center; }
 #post-navigation li:first-child a{ margin-left: 0; }
-#post-navigation li a{ border: 1px solid #bbb; text-align: left; text-indent: -9000px; width: 29px; display: block; float: left; border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px; margin-left: 5px; background-image: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    color-stop(0.26, rgb(230,230,230)),
-    color-stop(0.63, rgb(240,240,240))
-);
-background-image: -moz-linear-gradient(
-    center bottom,
-    rgb(235,235,235) 26%,
-    rgb(245,245,245) 63%
-);
-}
+#post-navigation li{ display: inline-block; }
+#post-navigation li a{ text-align: left; display: inline-block; padding: 4px 8px; }
 
-#post-navigation li.description,
-#post-navigation li.number{ font-family: Helvetica; text-transform: uppercase; font-size: 11px; line-height: 1.8em; font-weight: bold; color: #aaa; text-shadow: 0 1px 0 #fff; -moz-text-shadow: 0 1px 0 #fff; -webkit-text-shadow: 0 1px 0 #fff; padding: 3px 5px 0 0; }
-#post-navigation li.description{ margin-left: 5px; }
-#post-navigation li a span{ display: block; background: url("images/navigation_arrows.png") no-repeat 8px 4px; }
-#post-navigation li.next-post a span{ background-position: 8px 4px; }
-#post-navigation li.prev-post a span{ background-position: -28px 3px; }
-#post-navigation li.prev-page a span{ background-position: -65px 4px; }
-#post-navigation li.next-page a span{ background-position: -99px 4px; }
+#post-navigation li.number{ font-family: Helvetica; text-transform: uppercase; font-size: 11px; line-height: 1.8em; font-weight: bold; color: #000; padding: 4px 8px; display: inline; }
 
-#post-navigation li.disabled a span{ background-position-y: -36px; cursor: default; }
+.widgets_light #post-navigation li.number{ color: #fff; }
 
 /* @end */
 
@@ -1337,86 +1306,4 @@ body.rtl .post-type a{
 	text-align: center;
 }
 
-@media screen and (max-width:800px) {
-
-	body{
-		width: auto;
-		padding: 10px 20px;
-	}
-
-	h1.title,
-	h2.title{
-		font-size: 1.3em;
-		line-height: 1.2em;
-	}
-
-	#main,
-	.container{
-		width: auto;
-	}
-	
-	#primary{
-		width: 26%;
-	}
-	
-	#content{
-		width: 70%;
-	}
-
-	#content img,
-	#content video,
-	#content object,
-	#content audio{
-		width: auto;
-		max-width: 100%;
-		height: auto !important;
-		margin: 0 auto;
-	}
-
-}
-
-@media screen and (max-width:480px) {
-	
-	.mobile_site_header{
-		display: block;
-	}
-	
-	#content,
-	#primary,
-	#main{
-		float: none;
-		width: auto;
-	}
-	
-	#primary{
-		margin-top: 0;
-		width: auto;
-	}
-	
-	#primary .site-details{
-		display: none;
-	}
-	
-	#footer > *,
-	#footer > * > *{
-		float: none;
-		width: auto;
-		margin: 0 auto;
-	}
-	
-	#footer .two #first > aside, #footer .three #first > aside,
-	#footer .two #second > aside, #footer .three #third > aside{
-		margin-right: 0;
-		margin-left: 0;
-	}
-	
-	#footer .widget-area{
-		width: 100% !important;
-		margin: 0 auto 20 auto;
-		text-align: center;
-		float: none;
-		clear: both;
-	}
-
-}
-
+/* @end */
