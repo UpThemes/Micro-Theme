@@ -53,7 +53,6 @@ if (!(function_exists('woo_tumblog_image'))) {
 
 	function woo_tumblog_image($args) {
 		global $post;
-		global $woo_options;
 		
 		//Defaults
 		$key = 'image';
@@ -215,7 +214,7 @@ if (!(function_exists('woo_tumblog_image'))) {
 				
 			} else {  // Default - output with link				
 	
-				if ( ( is_single() OR is_page() ) AND $single == false ) {
+				if ( is_singular() ) {
 					$rel = 'rel="lightbox"';
 					$href = false;  
 				} else { 
@@ -342,7 +341,7 @@ if (!(function_exists('woo_tumblog_image'))) {
 					
 				} else {  // Default - output with link
 				
-					if ( ( is_single() OR is_page() ) AND $single == false ) { 
+					if ( is_singular() ) { 
 						$href = $custom_field;
 						$rel = 'rel="lightbox"';
 					} else { 

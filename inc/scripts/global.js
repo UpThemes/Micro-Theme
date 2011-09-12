@@ -3,6 +3,8 @@ jQuery(window).load(function() {
 	jQuery('.flexslider').flexslider({
 		directionNav: true,
 		slideshow: false,
+		controlNav: false,
+		animation: "slide",
     	controlsContainer: '.flex-container'
 	});
 });

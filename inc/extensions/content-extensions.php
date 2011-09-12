@@ -36,13 +36,16 @@ function micro_post_title(){
 	
 	/* Post Icons */
 	$post_icon_pref = $up_options->post_format_icon ? $up_options->post_format_icon : 'left';
-	$post_icon_pref = 'icon-'.$post_icon_pref; ?>
+	$post_icon_pref = 'icon-'.$post_icon_pref;
+		
+		if( !$postformat || $postformat == 'aside' || $postformat == 'status' || ( !empty($up_options->showtitle) && in_array($postformat, $up_options->showtitle ) ) ): ?>
+		<div class="post-type <?php echo $post_icons_pref;?>">
+			<a href="<?php echo get_post_format_link( get_post_format() ); ?>"><?php echo $post->ID; ?></a>
+		</div>
 	
-	<div class="post-type <?php echo $post_icons_pref;?>">
-		<a href="<?php echo get_post_format_link( get_post_format() ); ?>"><?php echo $post->ID; ?></a>
-	</div>
-
-	<?php
+		<?php
+		endif;
+		
 	endif;
 
 	/* Post Title */
@@ -53,7 +56,7 @@ function micro_post_title(){
 	$title = get_post_meta(get_the_ID(), 'link-text', true);
 	$title = $title ? $title . " &#8594;" : get_the_title();
 	
-	if( !$postformat || $postformat == 'aside' || $postformat == 'status' || in_array($postformat, $up_options->showtitle) ):
+	if( !$postformat || $postformat == 'aside' || $postformat == 'status' || ( !empty($up_options->showtitle) && in_array($postformat, $up_options->showtitle ) ) ):
 	    if( ( $url && get_post_format('link') ) || !is_singular() ): ?>
 			<h2 class="title"><a href="<?php echo $url; ?>"><?php echo $title; ?></a></h2>
 	    <?php else: ?>
@@ -235,7 +238,7 @@ function micro_time_posted(){
             echo '<a href="'.get_permalink($post->ID).'">'.human_time_diff(get_the_time('U'), current_time('timestamp')) . ' ago</a>';
         else:
 			echo '<a href="'.get_permalink($post->ID).'">';
-            the_time('F jS, Y');
+            the_time( get_time_format() );
 			echo '</a>';
         endif;?>
     </div>
@@ -274,7 +277,7 @@ function micro_content($content){
 		break;
 	
 		case 'gallery':
-			$content = micro_gallery();
+			$content .= micro_gallery();
 		break;
 		
 		case 'image':
@@ -305,7 +308,7 @@ function micro_content($content){
 						ended: function (event) {
 							$(this).jPlayer("play");
 						},
-						swfPath: "'.get_bloginfo('wpurl').'/wp-content/themes/micro/inc/scripts/jplayer",
+						swfPath: "' . get_template_directory_uri() . '/inc/scripts/jplayer",
 						supplied: "'.$ext.'"
 					});
 				});

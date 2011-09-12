@@ -8,11 +8,11 @@ function micro_attach_navigation(){
 	
 	<div id="post-navigation">
 
-		<?php if( is_single() || is_page() ): ?>
+		<?php if( is_single() ): ?>
 
 			<ul id="pages">
-				<li class="prev-page"><?php previous_post_link('%link',"<span>%title</span>"); ?></li>
-				<li class="next-page"><?php next_post_link('%link',"<span>%title</span>"); ?></li>
+				<li class="prev-page"><?php previous_post_link('%link',"<span>&larr; Previous Post: %title</span>"); ?></li>
+				<li class="next-page"><?php next_post_link('%link',"<span>Next Post: %title &rarr;</span>"); ?></li>
 			</ul>
 		
 		<?php else: ?>
