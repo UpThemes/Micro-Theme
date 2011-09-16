@@ -169,29 +169,29 @@ add_action('wp_print_styles','micro_custom_styles',40);
  * @since	Micro 1.0
  * 
  */
-function micro_body_class(){
+function micro_body_class( $body_class ){
 	
 	global $up_options;
 	
-	$body_class = '';
-	
 	if( $up_options->post_container != true )
-		$body_class .= 'contain_posts';
+		$body_class[] = 'contain_posts';
 
 	if( $up_options->widget_container != true )
-		$body_class .= ' contain_widgets';
+		$body_class[] = 'contain_widgets';
 
 	if( $up_options->sidebar_text_color == 'light' )
-		$body_class .= ' widgets_light';
+		$body_class[] = 'widgets_light';
 	else
-		$body_class .= ' widgets_dark';
+		$body_class[] = 'widgets_dark';
 
 	if(	$up_options->rtl_support == true )
-		$body_class .= ' rtl';
+		$body_class[] = 'rtl';
 		
 	return $body_class;
 	
 }
+// Hook micro_body_class() into the body_class filter
+add_filter( 'body_class', 'micro_body_class' );
 
 /**
  * Append Site Description To Site Header
