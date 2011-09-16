@@ -115,8 +115,6 @@ function micro_custom_styles(){
 		
 		if( $up_options->content_text_color )
 			$styles .= "#content .post_content,.navigation{ color: {$up_options->content_text_color}; }";
-        
-		$styles .= $up_options->customcss;
 		
 		$styles .= '</style>';
 		
