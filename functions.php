@@ -261,22 +261,6 @@ function micro_admin_header_style() {
     </style><?php
 }
 
-
-/**
- * Enqueue link for responsive CSS stylesheet
- * 
- * @since	Micro 1.0
- */
-function micro_make_responsive(){
-
-	echo "<link href=\"" . get_template_directory_uri() . "/inc/styles/responsive.css\" type=\"text/css\" rel=\"stylesheet\" media=\"screen\">";
-
-}
-// Hook micro_make_responsive() into wp_head
-add_action( 'wp_head', 'micro_make_responsive', 9999 );
-
-
-
 /**
  * Register theme Widgetized Sidebars
  * 

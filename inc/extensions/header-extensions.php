@@ -86,10 +86,39 @@ add_action( 'wp_enqueue_scripts', 'micro_add_scripts' );
  * 
  */
 function micro_add_styles(){
-	wp_enqueue_style('flexslider', get_template_directory_uri() . '/inc/scripts/flexslider/flexslider.css');
+	wp_enqueue_style( 'flexslider', get_template_directory_uri() . '/inc/scripts/flexslider/flexslider.css' );
 }
 // Hook micro_add_styles() into wp_print_styles
-add_action('wp_print_styles','micro_add_styles',1);
+add_action( 'wp_enqueue_scripts','micro_add_styles', 1 );
+
+/**
+ * Enqueue Responsive
+ * 
+ * Enqueues the responsive stylesheet used by 
+ * the Theme.
+ * 
+ * This function hooked into the WordPress 
+ * wp_enqueue_scripts hook, which fires in the 
+ * wp_head() template tag, in the header.php 
+ * template file.
+ * 
+ * @param	none
+ * @return	string	Enqueued stylesheets
+ * 
+ * @since	Micro 1.0
+ * 
+ */
+function micro_make_responsive() {
+    wp_enqueue_style(
+        'micro_responsive_css',
+        get_template_directory_uri() . '/inc/styles/responsive.css',
+        false,
+        false,
+        'screen'
+    );
+}
+// Hook micro_make_responsive() into wp_enqueue_scripts action
+add_action( 'wp_enqueue_scripts', 'micro_make_responsive', 9999 );
 
 /**
  * Enqueue Low-Priority Theme Stylesheets
@@ -146,7 +175,7 @@ function micro_custom_styles(){
 	
 }
 // Hook micro_custom_styles() into wp_print_styles
-add_action('wp_print_styles','micro_custom_styles',40);
+add_action( 'wp_enqueue_scripts', 'micro_custom_styles', 40 );
 
 /**
  * Add Custom Theme Classes to HTML Body Tag
