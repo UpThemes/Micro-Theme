@@ -172,32 +172,6 @@ require_once( get_template_directory() . '/inc/metaboxes/tumblog-meta.php' );
  */
 require_once( get_template_directory() . '/inc/update.php' );
 
-
-/**
- * Set $content_width
- * 
- * Set the global $content_width variable,
- * which is used for dynamic resizing of 
- * embedded images and video. Also, 
- * 
- * @link 	http://codex.wordpress.org/Function_Reference/add_image_size 		add_image_size()
- * 
- * @since	Micro 1.0
- */
-function micro_set_content_width(){
-
-	define( 'CONTENT_WIDTH', 500 );
-
-	global $content_width;
-
-	$content_width = CONTENT_WIDTH;
-	
-	add_image_size( 'full-width-image', $content_width, 99999, 0 );
-
-}
-// Hook micro_set_content_width() into after_setup_theme
-add_action('after_setup_theme','micro_set_content_width');
-
 /**
  * Theme initialization/setup function
  * 
@@ -217,6 +191,20 @@ add_action('after_setup_theme','micro_set_content_width');
  * @since Micro 1.0
  */
 function micro_theme_init(){
+
+	// Setup content width
+	define( 'CONTENT_WIDTH', 500 );
+
+	global $content_width;
+
+	if ( ! isset( $content_width ) ) {
+		$content_width = CONTENT_WIDTH;
+	}
+	
+	// Add Theme support for Post Thumbnails
+	add_theme_support( 'post-thumbnails' );
+	// Add custom image sizes
+	add_image_size( 'full-width-image', $content_width, 99999, 0 );
 	
 	deregister_theme_layout('left_column_grid');
 	deregister_theme_layout('right_column_grid');
@@ -233,11 +221,11 @@ function micro_theme_init(){
 	define('HEADER_IMAGE_WIDTH', 140); // use width and height appropriate for your theme
 	define('HEADER_IMAGE_HEIGHT', 140);
 
-	add_custom_image_header('micro_header_style','micro_admin_header_style');
+	add_custom_image_header( 'micro_header_style', 'micro_admin_header_style' );
 
 }
-// Hook micro_theme_init() into init
-add_action('init','micro_theme_init');
+// Hook micro_theme_init() into after_setup_theme action
+add_action( 'after_setup_theme', 'micro_theme_init' );
 
 /**
  * Header image CSS displayed on website front-end
@@ -285,10 +273,9 @@ function micro_make_responsive(){
 
 }
 // Hook micro_make_responsive() into wp_head
-add_action('wp_head','micro_make_responsive',9999);
+add_action( 'wp_head', 'micro_make_responsive', 9999 );
 
-//This cannot be contained in an init hook
-add_theme_support( 'post-thumbnails' );
+
 
 /**
  * Register theme Widgetized Sidebars
