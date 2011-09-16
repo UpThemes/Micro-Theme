@@ -6,7 +6,7 @@
  * all of the Theme's callback functions that hook into
  * Theme custom and WordPress action/filter hooks in header.php:
  *  - micro_before_header
- *  - wp_print_scripts
+ *  - wp_enqueue_scripts
  *  - wp_print_styles
  * 
  * @link 		http://codex.wordpress.org/Function_Reference/add_action 	add_action()
@@ -31,6 +31,12 @@
  * wp_head() template tag, in the header.php 
  * template file.
  * 
+ * @link 	http://codex.wordpress.org/Function_Reference/comments_open 				comments_open()
+ * @link 	http://codex.wordpress.org/Function_Reference/get_option 					get_option()
+ * @link 	http://codex.wordpress.org/Function_Reference/get_template_directory_uri 	get_template_directory_uri()
+ * @link 	http://codex.wordpress.org/Function_Reference/is_single 					is_single()
+ * @link 	http://codex.wordpress.org/Function_Reference/wp_enqueue_script 			wp_enqueue_script()
+ * 
  * @param	none
  * @return	string	Enqueued scripts
  * 
@@ -40,17 +46,23 @@
 function micro_add_scripts(){
 	
 	/* JPlayer Mini Audio Player */
-	wp_enqueue_script('jplayer', get_template_directory_uri() . '/inc/scripts/jplayer/jquery.jplayer.min.js', array('jquery'));
-    wp_enqueue_script('fancybox', get_template_directory_uri() . '/inc/scripts/fancybox/jquery.fancybox-1.3.4.pack.js', array('jquery'));
-    wp_enqueue_script('fancybox-mousewheel', get_template_directory_uri() . '/inc/scripts/fancybox/jquery.mousewheel-3.0.4.pack.js', array('jquery'));
-    wp_enqueue_script('fancybox-easing', get_template_directory_uri() . '/inc/scripts/fancybox/jquery.easing-1.3.pack.js', array('jquery'));
-	wp_enqueue_script('flexslider', get_template_directory_uri() . '/inc/scripts/flexslider/jquery.flexslider-min.js', array('jquery'));
-	wp_enqueue_script('micro', get_template_directory_uri() . '/inc/scripts/global.js', array('jquery'));
-	wp_enqueue_script('jplayer', get_template_directory_uri() . '/inc/scripts/modernizr-2.0.6.min.js');
+	wp_enqueue_script( 'jplayer', get_template_directory_uri() . '/inc/scripts/jplayer/jquery.jplayer.min.js', array( 'jquery' ) );
+    wp_enqueue_script( 'fancybox', get_template_directory_uri() . '/inc/scripts/fancybox/jquery.fancybox-1.3.4.pack.js', array( 'jquery' ) );
+    wp_enqueue_script( 'fancybox-mousewheel', get_template_directory_uri() . '/inc/scripts/fancybox/jquery.mousewheel-3.0.4.pack.js', array( 'jquery' ) );
+    wp_enqueue_script( 'fancybox-easing', get_template_directory_uri() . '/inc/scripts/fancybox/jquery.easing-1.3.pack.js', array( 'jquery' ) );
+	wp_enqueue_script( 'flexslider', get_template_directory_uri() . '/inc/scripts/flexslider/jquery.flexslider-min.js', array( 'jquery' ) );
+	wp_enqueue_script( 'micro', get_template_directory_uri() . '/inc/scripts/global.js', array( 'jquery' ) );
+	wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/inc/scripts/modernizr-2.0.6.min.js' );
+	// Moved form micro_init() function
+	wp_enqueue_script( 'scrolling', get_template_directory_uri() . '/inc/scripts/scrolling/scrolling.js' );
+	// Enqueue comment-reply script
+	if ( is_single() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
+	}
 
 }
 // Hook micro_add_scripts() into wp_print_scripts
-add_action('wp_print_scripts','micro_add_scripts',1);
+add_action( 'wp_enqueue_scripts', 'micro_add_scripts' );
 
 /**
  * Enqueue High-Priority Theme Stylesheets
