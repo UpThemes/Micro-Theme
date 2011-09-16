@@ -121,7 +121,7 @@ function micro_time_posted() {
             echo '<a href="' . get_permalink( $post->ID ) . '">' . human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) . ' ago</a>';
         else:
 			echo '<a href="' . get_permalink( $post->ID ) . '">';
-            the_time( get_time_format() );
+            the_time( get_option( 'time_format' ) );
 			echo '</a>';
         endif;?>
     </div>
