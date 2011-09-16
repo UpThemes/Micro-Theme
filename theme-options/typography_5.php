@@ -8,7 +8,9 @@ $options = array (
         "id" => "posttitle",
         "selector" => ".title",
         "type" => "typography",
-        "default" => "buda")
+        "default" => "buda",
+        "fontsize" => "20px",
+        "lineheight" => "21px")
 
 );
 
