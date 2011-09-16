@@ -431,11 +431,3 @@ if ( ! function_exists( 'woo_tumblog_image' ) ) {
 	}
 
 }
-
-/* Update Images When Activating Child Themes */
-if ( is_admin() && isset($_GET['activated'] ) && $pagenow == 'themes.php' ) {
-    $options = get_option('up_themes_'.UPTHEMES_SHORT_NAME);
-    $options['logo'] = get_bloginfo('stylesheet_directory').'/images/theme-logo.png';
-    $options['bg_image'] = get_bloginfo('stylesheet_directory').'/images/bkg-body.png';
-    update_option('up_themes_'.UPTHEMES_SHORT_NAME, $options);
-}
