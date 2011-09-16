@@ -912,7 +912,6 @@ add_action( 'micro_post_footer', 'micro_showmeta', 40 );
  * Child Themes can remove this output by calling 
  * remove_action( 'the_content', 'micro_content' );
  * 
- * @uses	micro_resize_video()	Defined in /inc/media.php
  * @uses	micro_tumblog_embed()	Defined in /inc/media.php
  * @uses	micro_gallery()			Defined in /inc/extensions/content-extensions.php
  * 
@@ -962,7 +961,7 @@ function micro_content( $content ) {
 		break;
 	
 		case 'video':
-			$content .= micro_resize_video( micro_tumblog_embed( array( "id" => $post->ID, "width" => CONTENT_WIDTH, "return" => true ) ) );
+			$content .= micro_tumblog_embed( array( "id" => $post->ID, "width" => CONTENT_WIDTH, "return" => true ) );
 		break;
 	
 		case 'gallery':
