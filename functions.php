@@ -151,8 +151,8 @@ require_once( get_template_directory() . '/inc/navigation.php' );
 /**
  * Include the Header Extensions Functions File
  * 
- * The /inc/expressapp.php file defines
- * SOMETHING THAT I DON'T KNOW YET
+ * The /inc/expressapp.php file integrates 
+ * the WooExpress App functionality.
  */
 require_once( get_template_directory() . '/inc/expressapp.php' );
 

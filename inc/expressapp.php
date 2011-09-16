@@ -4,15 +4,15 @@
  * 
  * The /inc/expressapp.php file defines
  * the Theme's ExpressApp functions
- *  - micro_new_taxonomy_tag()
- *  - micro_version()
- *  - micro_getPostsWithOffset()
- *  - micro_uploadFile()
- *  - micro_woo_taxonomy()
- *  - micro_woo_post_format()
- *  - micro_newPost()
- *  - micro_editPost()
- *  - attach_micro_methods()
+ *  - woo_new_taxonomy_tag()
+ *  - woo_version()
+ *  - woo_getPostsWithOffset()
+ *  - woo_uploadFile()
+ *  - woo_woo_taxonomy()
+ *  - woo_post_format()
+ *  - woo_newPost()
+ *  - woo_editPost()
+ *  - attach_woo_methods()
  * 
  * @link 		http://codex.wordpress.org/Function_Reference/add_filter 	add_filter()
  * 
@@ -30,7 +30,7 @@
  * @since 		Micro 1.0
  */
 
-if( ! function_exists('micro_new_taxonomy_tag') ):
+if( ! function_exists('woo_new_taxonomy_tag') ):
 
 /**
  * Set taxonomies for post
@@ -42,7 +42,7 @@ if( ! function_exists('micro_new_taxonomy_tag') ):
  * Enter Values as array
  * array ( 'tags' => '', 'taxonomy' => '' )
  */
-function micro_new_taxonomy_tag( $post_id, $fields ) {
+function woo_new_taxonomy_tag( $post_id, $fields ) {
 	$post_id = (int) $post_id;
 
 	foreach ( (array) $fields as $tax ) {
@@ -63,7 +63,7 @@ function micro_new_taxonomy_tag( $post_id, $fields ) {
 
 endif;
 
-if( ! function_exists( 'micro_version' ) ):
+if( ! function_exists( 'woo_version' ) ):
 
 /*
  * Express version
@@ -84,13 +84,13 @@ if( ! function_exists( 'micro_version' ) ):
  * @since	Micro 1.0
  * 
  */
-function micro_version() {
+function woo_version() {
 	return "1.0";
 }
 
 endif;
 
-if( ! function_exists( 'micro_getPostsWithOffset' ) ):
+if( ! function_exists( 'woo_getPostsWithOffset' ) ):
 
 /*
  * Get Posts With Offset
@@ -110,7 +110,7 @@ if( ! function_exists( 'micro_getPostsWithOffset' ) ):
  * @since	Micro 1.0
  * 
  */	
-function micro_getPostsWithOffset( $args ){
+function woo_getPostsWithOffset( $args ){
 	global $wpdb;
 	global $wp_xmlrpc_server;
 
@@ -224,7 +224,7 @@ function micro_getPostsWithOffset( $args ){
 
 endif;
 
-if( ! function_exists( 'micro_woo_taxonomy' ) ):
+if( ! function_exists( 'woo_uploadFile' ) ):
 
 	/*
 	 * Upload file
@@ -244,7 +244,7 @@ if( ! function_exists( 'micro_woo_taxonomy' ) ):
 	 * @since	Micro 1.0
 	 * 
 	 */	
-	function micro_uploadFile( $args ) {
+	function woo_uploadFile( $args ) {
 		global $wpdb;
 		global $wp_xmlrpc_server;
 
@@ -317,7 +317,7 @@ if( ! function_exists( 'micro_woo_taxonomy' ) ):
 
 endif;
 
-if( ! function_exists( 'micro_woo_taxonomy' ) ):
+if( ! function_exists( 'woo_taxonomy' ) ):
 
 /*
  * Woo taxonomy
@@ -337,7 +337,7 @@ if( ! function_exists( 'micro_woo_taxonomy' ) ):
  * @since	Micro 1.0
  * 
  */	
-function micro_woo_taxonomy( $args ) {
+function woo_taxonomy( $args ) {
 	$content_struct = $args[3];
 
 	// Re-assign the taxonomies so they are compatible with WooThemes themes
@@ -379,7 +379,7 @@ function micro_woo_taxonomy( $args ) {
 
 endif;
 
-if( ! function_exists('micro_woo_post_format' ) ):
+if( ! function_exists( 'woo_post_format' ) ):
 
 /*
  * Woo Post Formats
@@ -399,7 +399,7 @@ if( ! function_exists('micro_woo_post_format' ) ):
  * @since	Micro 1.0
  * 
  */	
-function micro_woo_post_format( $args ) {
+function woo_post_format( $args ) {
 	$content_struct = $args[3];
 
 	// Convert the taxonomies to post formats
@@ -439,7 +439,7 @@ function micro_woo_post_format( $args ) {
 
 endif;
 
-if( ! function_exists( 'micro_newPost' ) ):
+if( ! function_exists( 'woo_newPost' ) ):
 
 	/*
 	 * New post
@@ -460,10 +460,10 @@ if( ! function_exists( 'micro_newPost' ) ):
 	 * @since	Micro 1.0
 	 * 
 	 */	
-	function micro_newPost( $args ) {
+	function woo_newPost( $args ) {
 		global $wp_xmlrpc_server;
 
-		$args = micro_woo_post_format( $args );
+		$args = woo_post_format( $args );
 		
 		$result = $wp_xmlrpc_server->mw_newPost($args);
 		$post_ID = intval( $result );
@@ -474,7 +474,7 @@ if( ! function_exists( 'micro_newPost' ) ):
 		// Insert taxonomies
 		if ( get_option( 'woo_tumblog_content_method' ) != 'post_format' ) {	
 			if ( isset( $content_struct['taxonomy'] ) ) {
-				micro_new_taxonomy_tag( $post_ID, $content_struct['taxonomy'] );
+				woo_new_taxonomy_tag( $post_ID, $content_struct['taxonomy'] );
 			}
 		}	
 
@@ -495,7 +495,7 @@ if( ! function_exists( 'micro_newPost' ) ):
 
 endif;
 
-if( ! function_exists( 'micro_editPost' ) ):
+if( ! function_exists( 'woo_editPost' ) ):
 
 	/*
 	 * Edit post
@@ -516,14 +516,14 @@ if( ! function_exists( 'micro_editPost' ) ):
 	 * @since	Micro 1.0
 	 * 
 	 */	
-	function micro_editPost( $args ) {
+	function woo_editPost( $args ) {
 		global $wp_xmlrpc_server;
 		
 		if ( get_option( 'woo_tumblog_content_method' ) == 'post_format' ) {	
-			$args = micro_woo_post_format($args);
+			$args = woo_post_format($args);
 		}
 		else {
-			$args = micro_woo_taxonomy($args);
+			$args = woo_taxonomy($args);
 		}
 		
 		$result = $wp_xmlrpc_server->mw_editPost($args);
@@ -532,7 +532,7 @@ if( ! function_exists( 'micro_editPost' ) ):
 		// Insert taxonomies
 		if ( get_option( 'woo_tumblog_content_method' ) != 'post_format' ) {	
 			if ( isset( $content_struct['taxonomy'] ) ) {
-				micro_new_taxonomy_tag( $post_ID, $content_struct['taxonomy'] );
+				woo_new_taxonomy_tag( $post_ID, $content_struct['taxonomy'] );
 			}
 		}	
 		
@@ -558,7 +558,7 @@ if( ! function_exists( 'micro_editPost' ) ):
 
 endif;
 
-if( ! function_exists( 'attach_micro_methods' ) ):
+if( ! function_exists( 'attach_woo_methods' ) ):
 
 	/**
 	 * SHORT TITLE
@@ -571,16 +571,16 @@ if( ! function_exists( 'attach_micro_methods' ) ):
 	 * @since	Micro 1.0
 	 * 
 	 */
-	function attach_micro_methods( $methods ) {
-		$methods['express.version'] = 'micro_version';
-		$methods['express.getPostsWithOffset'] = 'micro_getPostsWithOffset';
-		$methods['express.uploadFile'] = 'micro_uploadFile';
-		$methods['express.newPost'] = 'micro_newPost';
-		$methods['express.editPost'] = 'micro_editPost';
+	function attach_woo_methods( $methods ) {
+		$methods['express.version'] = 'woo_version';
+		$methods['express.getPostsWithOffset'] = 'woo_getPostsWithOffset';
+		$methods['express.uploadFile'] = 'woo_uploadFile';
+		$methods['express.newPost'] = 'woo_newPost';
+		$methods['express.editPost'] = 'woo_editPost';
 		return $methods;
 	}
-	// Hook attach_micro_methods() into xmlrpc_methods filter
-	add_filter( 'xmlrpc_methods', 'attach_micro_methods' );
+	// Hook attach_woo_methods() into xmlrpc_methods filter
+	add_filter( 'xmlrpc_methods', 'attach_woo_methods' );
 
 endif;
 
