@@ -216,6 +216,10 @@ svg {
 
 /* @group Base Styles */
 
+body{
+	font: 14px/21px "Helvetica Neue", Helvetica, Arial, Tahoma, sans-serif;
+}
+
 .format-quote blockquote {
 	font-family: Georgia, "Times New Roman", serif;;
 }
@@ -320,6 +324,12 @@ legend      {font-weight: bold; font-size:1.2em;}
 
 .contain_widgets #primary .widget{
 	padding: 8px;
+}
+
+.contain_posts .format-image img{
+	margin: -35px -34px -20px -34px;
+	width: 562px;
+	max-width: 640px;
 }
 
 /* @end */
@@ -432,6 +442,11 @@ legend      {font-weight: bold; font-size:1.2em;}
 /* @end */
 
 /* @group Base Sidebar Styles */
+
+.logo{
+	display: block;
+	margin: 0 auto 20px;
+}
 
 #primary {
 	text-align: center;
@@ -608,7 +623,7 @@ legend      {font-weight: bold; font-size:1.2em;}
 }
 
 .audio{
-        margin-top:25px;
+	margin-top:25px;
 }
 
 /* @end */
@@ -627,7 +642,7 @@ legend      {font-weight: bold; font-size:1.2em;}
 	list-style: none; 
 }
 
-.hentry {
+.hentry{
 	clear: both;
 	padding: 0;
 	margin: 0 0 48px 60px;
@@ -646,7 +661,7 @@ legend      {font-weight: bold; font-size:1.2em;}
 	height: auto;
 }
 
-.post-type {
+.post-type{
 	clear: left;
     color: #999999;
     float: left;
@@ -667,7 +682,7 @@ legend      {font-weight: bold; font-size:1.2em;}
 }
 
 
-.post .post-type a {
+.post .post-type a{
 	display: block;
 	width: 35px;
 	height: 41px;
