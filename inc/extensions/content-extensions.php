@@ -19,7 +19,6 @@
  *  - micro_image_slider()
  *  - micro_no_posts()
  *  - micro_post_images()
- *  - micro_post_type()
  *  - micro_time_posted()
  * 
  * @link 		http://codex.wordpress.org/Function_Reference/add_action 	add_action()
@@ -568,50 +567,6 @@ function micro_close_before_post(){
 }
 
 add_action( 'micro_post_header', 'micro_close_before_post', 500 );
-
-/**
- * Output Post Format Type/Link
- * 
- * Outputs the name and archive link for the Post 
- * Format type for the current post, in the post 
- * header.
- * 
- * The micro_post_type() function is hooked 
- * into the micro_post_header hook, which is 
- * fired inside the micro_post_header() function. 
- * 
- * The micro_post_header() function is defined 
- * in /inc/hooks.php and is fired in the 
- * content.php, content-page.php, and 
- * content-single.php template files.
- * 
- * Template file: content.php, content-page.php, content-single.php
- * 
- * NOTE: This function is not currently used by the Theme
- * 
- * Child Themes can remove this output by calling 
- * remove_action( 'micro_post_header', 'micro_post_type', 40 );
- * 
- * Template file: sidebar.php
- * 
- * @param	none
- * @return	string	Markup for post format type and link
- * 
- * @since	Micro 1.0
- * 
- */
-function micro_post_type(){
-	global $post, $up_options;
-	$post_format_pref = $up_options->post_format_icon ? $up_options->post_format_icon : 'left';
-	$post_format_pref = 'icon-'.$post_format_pref; ?>
-	
-	<div class="post-type <?php echo $post_format_pref;?>">
-		<a href="<?php echo get_post_format_link( get_post_format() ); ?>"><?php echo $post->ID; ?></a>
-	</div>
-<?php
-}
-
-//add_action( 'micro_post_header', 'micro_post_type', 40 );
 
 /**
  * Output Author Meta

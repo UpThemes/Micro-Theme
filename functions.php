@@ -81,7 +81,6 @@ require_once( get_template_directory() . '/inc/extensions/comments-extensions.ph
  *  - micro_image_slider()
  *  - micro_no_posts()
  *  - micro_post_images()
- *  - micro_post_type()
  *  - micro_time_posted()
  */
 require_once( get_template_directory() . '/inc/extensions/content-extensions.php' );
@@ -113,7 +112,6 @@ require_once( get_template_directory() . '/inc/extensions/sidebar-extensions.php
  * 
  * The /inc/helpers.php file defines
  * all of the Theme's general, custom/helper functions
- *  - micro_attach_image_content()
  *  - micro_convert_url_to_embed()
  *  - woo_tumblog_image()
  */
@@ -124,7 +122,6 @@ require_once( get_template_directory() . '/inc/helpers.php' );
  * 
  * The /inc/media.php file defines 
  * all of the Theme's custom, media-handling functions
- *  - micro_audio_content()
  *  - micro_resize_video()
  *  - micro_tumblog_embed()
  */

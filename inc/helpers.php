@@ -19,36 +19,6 @@
 
 
 /**
- * Output Attached Image Content
- * 
- * Outputs attached or embedded image content
- * for posts with the Post Format "Image" type.
- * 
- * This function currently is not used by the 
- * Theme.
- * 
- * Template file: N/A
- * 
- * @link 	http://codex.wordpress.org/Function_Reference/has_theme_support 	has_theme_support()
- * 
- * @link 	http://php.net/manual/en/function.function-exists.php 				function_exists()
- * 
- * @param	none
- * @return	string	HTML markup for attached image
- * 
- * @since	Micro 1.0
- * 
- */
-function micro_attach_image_content(){
-
-	if( function_exists( 'woo_tumblog_image' ) )
-		woo_tumblog_image( array( "id" => get_the_ID(), "width" => 500 ) );
-	elseif( function_exists( 'has_theme_support' ) && has_theme_support( 'post-thumbnails' ) )
-		the_post_thumbnail( array( 500, 99999, 1 ) );
-
-}
-
-/**
  * Convert Custom Field URL to Embed Code
  * 
  * Outputs video-embed markup for video URLs
