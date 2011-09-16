@@ -103,7 +103,8 @@ function micro_author_details() {
  * @link 	http://codex.wordpress.org/Function_Reference/human_time_diff 	human_time_diff()
  * @link 	http://codex.wordpress.org/Function_Reference/get_the_time 		get_the_time()
  * @link 	http://codex.wordpress.org/Function_Reference/the_time 			the_time()
- * @link 	http://codex.wordpress.org/Function_Reference/current_time 		current_time()
+ * 
+ * @link 	http://php.net/manual/en/function.time.php 						time()
  * 
  * @param	none
  * @return	string	Markup for post timestamp metadata
@@ -117,7 +118,7 @@ function micro_time_posted() {
     <div class="post-date">
         <?php
         if( $up_options->showtime_format ):
-            echo '<a href="' . get_permalink( $post->ID ) . '">' . human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) . ' ago</a>';
+            echo '<a href="' . get_permalink( $post->ID ) . '">' . human_time_diff( get_the_time( 'U' ), time() ) . ' ago</a>';
         else:
 			echo '<a href="' . get_permalink( $post->ID ) . '">';
             the_time( get_option( 'time_format' ) );
