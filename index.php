@@ -12,7 +12,8 @@
  * @link 		http://codex.wordpress.org/Function_Reference/have_posts 			have_posts()
  * @link 		http://codex.wordpress.org/Function_Reference/the_post 				the_post()
  * 
- * @uses		micro_no_posts()	Defined in /inc/extensions/content-extensions.php
+ * @uses		micro_no_posts()			Defined in /inc/extensions/content-extensions.php
+ * @uses		upfw_get_template_context()	Defined in /admin/functions.php
  *
  * @package 	Micro
  * @copyright	Copyright (c) 2011, UpThemes
@@ -29,9 +30,10 @@
  * 
  * @see {@link: http://codex.wordpress.org/Function_Reference/get_header get_header}
  * 
- * Child Themes can replace this template part file globally, via "header.php"
+ * Child Themes can replace this template part file globally, via "header.php", or in
+ * a specifric context only, via "header-{context}.php"
  */
-get_header(); 
+get_header( upfw_get_template_context() ); 
 ?>
 
     <ul id="posts">
@@ -59,7 +61,7 @@ get_header();
 		* via "content.php", or in a specific context only, via 
 		* "content-{context}.php"
 		*/
-		get_template_part( 'content', 'index' ); 
+		get_template_part( 'content', upfw_get_template_context() ); 
 		?>
 		
 		<?php endwhile; ?>
@@ -82,7 +84,8 @@ get_header();
  * 
  * Codex reference: {@link http://codex.wordpress.org/Function_Reference/get_footer get_footer}
  * 
- * Child Themes can replace this template part file globally, via "footer.php"
+ * Child Themes can replace this template part file globally, via "footer.php", or in
+ * a specific context only, via "footer-{context}.php"
  */
-get_footer(); 
+get_footer( upfw_get_template_context() ); 
 ?>

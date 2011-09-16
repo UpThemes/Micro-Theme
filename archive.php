@@ -14,7 +14,8 @@
  * @link 		http://codex.wordpress.org/Function_Reference/the_post 				the_post()
  * @link 		http://codex.wordpress.org/Function_Reference/wp_title 				wp_title()
  * 
- * @uses		micro_no_posts()	Defined in /inc/extensions/content-extensions.php
+ * @uses		micro_no_posts()			Defined in /inc/extensions/content-extensions.php
+ * @uses		upfw_get_template_context()	Defined in /admin/functions.php
  *
  * @package 	Micro
  * @copyright	Copyright (c) 2011, UpThemes
@@ -22,7 +23,19 @@
  * @since 		Micro 1.0
  */ 
 
-get_header( 'category' ); 
+/**
+ * Include the header template part file
+ * 
+ * MUST come first. 
+ * Calls the header PHP file. 
+ * Used in all primary template pages
+ * 
+ * @see {@link: http://codex.wordpress.org/Function_Reference/get_header get_header}
+ * 
+ * Child Themes can replace this template part file globally, via "header.php", or in
+ * a specific archive context only, via "header-{context}.php"
+ */
+get_header( upfw_get_template_context() ); 
 ?>
 
 	<h1><?php echo _e('Archives:'); wp_title(''); ?></h1>
@@ -32,7 +45,27 @@ get_header( 'category' );
         <?php if( have_posts() ): while( have_posts() ): the_post(); ?>
 		
 		<?php 
-		get_template_part( 'content', 'category' ); 
+		/**
+		* Include the content template part file
+		* 
+		* Codex reference: {@link http://codex.wordpress.org/Function_Reference/get_template_part get_template_part}
+		* 
+		* get_template_part( $slug ) will attempt to include $slug.php. 
+		* The function will attempt to include files in the following 
+		* order, until it finds one that exists: the Theme's $slug.php, 
+		* the parent Theme's $slug.php
+		* 
+		* get_template_part( $slug , $name ) will attempt to include 
+		* $slug-$name.php. The function will attempt to include files 
+		* in the following order, until it finds one that exists: the 
+		* Theme's $slug-$name.php, the Theme's $slug.php, the parent 
+		* Theme's $slug-$name.php, the parent Theme's $slug.php
+		* 
+		* Child Themes can replace this template part file globally, 
+		* via "content.php", or in a specific archive context only, via 
+		* "content-{context}.php"
+		*/
+		get_template_part( 'content', upfw_get_template_context() ); 
 		?>
 		
 		<?php endwhile; ?>
@@ -46,5 +79,17 @@ get_header( 'category' );
 	</ul>
 	
 <?php 
-get_footer( 'category' ); 
+/**
+ * Include the footer template part file
+ * 
+ * MUST come last. 
+ * Calls the footer PHP file. 
+ * Used in all primary template pages
+ * 
+ * Codex reference: {@link http://codex.wordpress.org/Function_Reference/get_footer get_footer}
+ * 
+ * Child Themes can replace this template part file globally, via "footer.php",
+ * or in a specific archive context only, via "footer-{context}.php"
+ */
+get_footer( upfw_get_template_context() ); 
 ?>

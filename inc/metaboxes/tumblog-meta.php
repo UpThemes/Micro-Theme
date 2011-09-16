@@ -1,28 +1,82 @@
 <?php
+/**
+ * Theme Tumblog Metabox Functions file
+ * 
+ * The /inc/metaboxes/tumblog-meta.php file includes
+ * the Theme's Tumblog metabox functions
+ * 
+ * @link 		http://codex.wordpress.org/Function_Reference/add_action 	add_action()
+ * 
+ * @package 	Micro
+ * @copyright	Copyright (c) 2011, UpThemes
+ * @license		http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, v2 (or newer)
+ *
+ * @since 		Micro 1.0
+ */
 
-/* Define the custom box */
-
-// WP 3.0+
-// add_action('add_meta_boxes', 'myplugin_add_custom_box');
-
-// backwards compatible
-add_action('admin_init', 'tumblog_add_custom_box', 1);
-
-add_action( 'admin_menu' , 'remove_post_custom_fields' );
-
-/* Adds a box to the main column on the Post and Page edit screens */
+/**
+ * Add Tumblog Metabox to Post Edit Screen
+ * 
+ * Adds the Tumblog metabox to the post-edit
+ * screen, to allow entry of Tumblog-style 
+ * post content based on selected Post Format 
+ * type.
+ * 
+ * @link 	http://codex.wordpress.org/Function_Reference/add_meta_box 			add_meta_box()
+ * @link 	http://codex.wordpress.org/Function_Reference/wp_enqueue_script 	wp_enqueue_script()
+ * 
+ * @param	none
+ * @return	none
+ * 
+ * @since	Micro 1.0
+ * 
+ */
 function tumblog_add_custom_box() {
 	$upthemes =  THEME_DIR.'/admin/';
 	
 	add_meta_box( 'tumblog', __( 'Tumblog Options', 'micro' ), 'tumblog_meta_box', 'post', 'normal', 'high' );
-	wp_enqueue_script('ajaxupload', $upthemes."js/ajaxupload.js", array('jquery'));
+	wp_enqueue_script( 'ajaxupload', $upthemes."js/ajaxupload.js", array( 'jquery' ) );
 }
+// Hook tumblog_add_custom_box() into admin_init action
+add_action( 'admin_init', 'tumblog_add_custom_box', 1 );
 
+/**
+ * Remove Custom Field Metabox From Post Edit Screen
+ * 
+ * Removes the standard custom field metabox from 
+ * the post-edit screen, since custom post meta 
+ * data will be added via the Tumblog metabox.
+ * 
+ * @link 	http://codex.wordpress.org/Function_Reference/remove_meta_box 		remove_meta_box()
+ * 
+ * @param	none
+ * @return	none
+ * 
+ * @since	Micro 1.0
+ * 
+ */
 function remove_post_custom_fields() {
 	remove_meta_box( 'postcustom' , 'post' , 'normal' ); 
 }
+// Hook remove_post_custom_fields() into admin_menu action
+add_action( 'admin_menu' , 'remove_post_custom_fields' );
 
-/* Prints the box content */
+/**
+ * Define Markup for the Tumblog Metabox
+ * 
+ * Defines the markup for the Tumblog metabox,
+ * including specific input fields based on the 
+ * selected Post Format type.
+ * 
+ * @link 	http://codex.wordpress.org/Function_Reference/get_post_meta 	get_post_meta()
+ * @link 	http://codex.wordpress.org/Function_Reference/wp_nonce_field	wp_nonce_field()
+ * 
+ * @param	none
+ * @return	string	Markup for post-edit screen metabox
+ * 
+ * @since	Micro 1.0
+ * 
+ */
 function tumblog_meta_box() {
 
 	// Use nonce for verification
@@ -331,6 +385,27 @@ jQuery(function($){
 }
 
 /* When the post is saved, saves our custom data */
+/**
+ * Save Tumblog Post Custom Meta Data
+ * 
+ * Validates/sanitizes and saves post custom meta 
+ * data entered via the Tumblog metabox.
+ * 
+ * @uses	convert_url_to_embed	Defined in /inc/media.php
+ * 
+ * @link 	http://codex.wordpress.org/Function_Reference/current_user_can 	current_user_can()
+ * @link 	http://codex.wordpress.org/Function_Reference/update_post_meta 	update_post_meta()
+ * @link 	http://codex.wordpress.org/Function_Reference/wp_verify_nonce	wp_verify_nonce()
+ * 
+ * @link 	http://php.net/manual/en/function.defined.php 					defined()
+ * @link 	http://php.net/manual/en/function.function-exists.php 			function_exists()
+ * 
+ * @param	int 	$post_id	Current post ID
+ * @return	none
+ * 
+ * @since	Micro 1.0
+ * 
+ */
 function tumblog_save_postdata( $post_id ) {
 	
 	// verify this came from the our screen and with proper authorization,
@@ -381,4 +456,4 @@ function tumblog_save_postdata( $post_id ) {
 }
 
 /* Do something with the data entered */
-add_action('save_post', 'tumblog_save_postdata');
+add_action( 'save_post', 'tumblog_save_postdata' );

@@ -1,17 +1,50 @@
 <?php
 /**
- * Comments extensions.
+ * Theme Comments Extension Functions file
+ * 
+ * The /inc/extensions/comments-extensions.php file defines
+ * all of the Theme's callback functions that hook into
+ * Theme custom and WordPress action/filter hooks in comments.php
+ *  - micro_comments
+ *  - wp_list_comments (callback)
+ * 
+ * @link 		http://codex.wordpress.org/Function_Reference/add_action 	add_action()
+ * 
+ * @package 	Micro
+ * @copyright	Copyright (c) 2011, UpThemes
+ * @license		http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, v2 (or newer)
  *
- * @package WordPress
- * @subpackage Micro
- * @since Micro 1.0
+ * @since 		Micro 1.0
  */
 
-/*** micro_comments
-**   since 1.0
-**   accepts 0 args
-****************************************/
-
+/**
+ * Output Post Comments
+ * 
+ * Outputs post comments on single blog posts. 
+ * If the Theme option is enabled to use Disqus 
+ * comments, then Disqus comment markup is output; 
+ * otherwise, the Theme comments template file is 
+ * output.
+ * 
+ * This function hooked into the micro_comments hook, 
+ * which is defined in /inc/hooks.php, and which fires
+ * in the content.php and content-single.php template
+ * files.
+ * 
+ * Template files: content.php, content-single.php
+ * 
+ * @link 	http://codex.wordpress.org/Function_Reference/_e		 			_e()
+ * @link 	http://codex.wordpress.org/Function_Reference/comments_template 	comments_template()
+ * @link 	http://codex.wordpress.org/Function_Reference/is_single 			is_single()
+ * @link 	http://codex.wordpress.org/Function_Reference/the_permalink			the_permalink()
+ * @link 	http://codex.wordpress.org/Function_Reference/the_title 			the_title()
+ * 
+ * @param	none
+ * @return	string	Comments markup
+ * 
+ * @since	Micro 1.0
+ * 
+ */
 function micro_attach_comments(){
 	if(is_single()):
 		global $post,$up_options;
@@ -33,7 +66,7 @@ function micro_attach_comments(){
 		<?php endif;
 	endif;
 }
-
+// Hook micro_attach_comments() into micro_comments
 add_action('micro_comments','micro_attach_comments');
 
 /**
@@ -43,6 +76,8 @@ add_action('micro_comments','micro_attach_comments');
  * 
  * wp_list_comments() Callback function for 
  * Pings (Trackbacks/Pingbacks)
+ * 
+ * Template file: comments.php
  * 
  * @link	http://codex.wordpress.org/Function_Reference/comment_author_link	Codex reference: comment_author_link()
  * @link	http://codex.wordpress.org/Function_Reference/comment_class	Codex reference: comment_class()

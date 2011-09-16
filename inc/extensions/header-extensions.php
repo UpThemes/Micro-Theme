@@ -1,17 +1,42 @@
 <?php
 /**
- * Header extensions.
+ * Theme Header Extension Functions file
+ * 
+ * The /inc/extensions/header-extensions.php file defines
+ * all of the Theme's callback functions that hook into
+ * Theme custom and WordPress action/filter hooks in header.php:
+ *  - micro_before_header
+ *  - wp_print_scripts
+ *  - wp_print_styles
+ * 
+ * @link 		http://codex.wordpress.org/Function_Reference/add_action 	add_action()
+ * 
+ * @package 	Micro
+ * @copyright	Copyright (c) 2011, UpThemes
+ * @license		http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, v2 (or newer)
  *
- * @package WordPress
- * @subpackage Micro
- * @since Micro 1.0
+ * @since 		Micro 1.0
  */
 
-/*** micro_add_scripts
-**   since 1.0
-**   accepts 0 args
-****************************************/
-
+/**
+ * Enqueue Theme Scripts
+ * 
+ * Enqueues the third-party scripts used by the 
+ * Theme, including jPlayer, FancyBox, FancyBox 
+ * MouseWheel and Easing, FlexSlider, Modernizr, 
+ * and custom Theme scripts.
+ * 
+ * This function hooked into the WordPress 
+ * wp_print_scripts hook, which fires in the 
+ * wp_head() template tag, in the header.php 
+ * template file.
+ * 
+ * @param	none
+ * @return	string	Enqueued scripts
+ * 
+ * @since	Micro 1.0
+ * 
+ */
 function micro_add_scripts(){
 	
 	/* JPlayer Mini Audio Player */
@@ -24,20 +49,50 @@ function micro_add_scripts(){
 	wp_enqueue_script('jplayer', get_template_directory_uri() . '/inc/scripts/modernizr-2.0.6.min.js');
 
 }
-
+// Hook micro_add_scripts() into wp_print_scripts
 add_action('wp_print_scripts','micro_add_scripts',1);
 
+/**
+ * Enqueue High-Priority Theme Stylesheets
+ * 
+ * Enqueues the third-party stylesheets used by the 
+ * Theme, including FlexSlider.
+ * 
+ * This function hooked into the WordPress 
+ * wp_print_styles hook, which fires in the 
+ * wp_head() template tag, in the header.php 
+ * template file.
+ * 
+ * @param	none
+ * @return	string	Enqueued stylesheets
+ * 
+ * @since	Micro 1.0
+ * 
+ */
 function micro_add_styles(){
 	wp_enqueue_style('flexslider', get_template_directory_uri() . '/inc/scripts/flexslider/flexslider.css');
 }
-
+// Hook micro_add_styles() into wp_print_styles
 add_action('wp_print_styles','micro_add_styles',1);
 
-/*** micro_custom_styles
-**   since 1.0
-**   accepts 0 args
-****************************************/
-
+/**
+ * Enqueue Low-Priority Theme Stylesheets
+ * 
+ * Enqueues the third-party stylesheets used by the 
+ * Theme, including FancyBox and jPlayer, as well as 
+ * custom stylesheets used by the Theme.
+ * 
+ * This function hooked into the WordPress 
+ * wp_print_styles hook, which fires in the 
+ * wp_head() template tag, in the header.php 
+ * template file.
+ * 
+ * @param	none
+ * @return	string	Enqueued stylesheets
+ * 
+ * @since	Micro 1.0
+ * 
+ */
 function micro_custom_styles(){
 	
 	global $up_options;
@@ -76,9 +131,30 @@ function micro_custom_styles(){
 		wp_enqueue_style('jplayer', get_template_directory_uri() . '/inc/scripts/jplayer/skin.css');
 	
 }
-
+// Hook micro_custom_styles() into wp_print_styles
 add_action('wp_print_styles','micro_custom_styles',40);
 
+/**
+ * Add Custom Theme Classes to HTML Body Tag
+ * 
+ * Adds custom classes to the HTML Body tag, 
+ * based on the Theme options for post 
+ * container class and widget container 
+ * class, as well as light/dark Widget color, 
+ * and RTL support.
+ * 
+ * This function is passed as an argument to the 
+ * body_class() template tag, which is called 
+ * in the header.php template file.
+ * 
+ * Template file: header.php
+ * 
+ * @param	none
+ * @return	string	space-separated list of CSS classes
+ * 
+ * @since	Micro 1.0
+ * 
+ */
 function micro_body_class(){
 	
 	global $up_options;
@@ -103,6 +179,22 @@ function micro_body_class(){
 	
 }
 
+/**
+ * Append Site Description To Site Header
+ * 
+ * Appends a DIV containing the site description 
+ * before the site header content.
+ * 
+ * This function hooked into the micro_before_header 
+ * hook, which is defined in /inc/hooks.php, and which 
+ * fires in the header.php template file.
+ * 
+ * @param	none
+ * @return	string	HTML markup containing the site description
+ * 
+ * @since	Micro 1.0
+ * 
+ */
 function micro_mobile_header(){
 
 	global $up_options;

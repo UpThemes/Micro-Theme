@@ -1,36 +1,90 @@
 <?php
+/**
+ * Theme Helper Functions file
+ * 
+ * The /inc/helpers.php file defines
+ * all of the Theme's general, custom/helper functions
+ *  - attach_image_content()
+ *  - convert_url_to_embed()
+ *  - woo_tumblog_image()
+ * 
+ * @link 		http://php.net/manual/en/function.function-exists.php 					function_exists()
+ * 
+ * @package 	Micro
+ * @copyright	Copyright (c) 2011, UpThemes
+ * @license		http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, v2 (or newer)
+ *
+ * @since 		Micro 1.0
+ */
 
-/*** attach_image_content
-**   since 1.0
-**   accepts 0 args
-****************************************/
 
+/**
+ * Output Attached Image Content
+ * 
+ * Outputs attached or embedded image content
+ * for posts with the Post Format "Image" type.
+ * 
+ * This function currently is not used by the 
+ * Theme.
+ * 
+ * Template file: N/A
+ * 
+ * @link 	http://codex.wordpress.org/Function_Reference/has_theme_support 	has_theme_support()
+ * 
+ * @link 	http://php.net/manual/en/function.function-exists.php 				function_exists()
+ * 
+ * @param	none
+ * @return	string	HTML markup for attached image
+ * 
+ * @since	Micro 1.0
+ * 
+ */
 function attach_image_content(){
 
-	if( function_exists('woo_tumblog_image') )
-		woo_tumblog_image(array("id" => get_the_ID(),"width" => 500));
-	elseif( function_exists('has_theme_support') && has_theme_support('post-thumbnails') )
-		the_post_thumbnail(array(500,99999,1));
+	if( function_exists( 'woo_tumblog_image' ) )
+		woo_tumblog_image( array( "id" => get_the_ID(), "width" => 500 ) );
+	elseif( function_exists( 'has_theme_support' ) && has_theme_support( 'post-thumbnails' ) )
+		the_post_thumbnail( array( 500, 99999, 1 ) );
 
 }
 
-/*** convert_url_to_embed
-**   since 1.0
-**   accepts 1 arg: $url
-****************************************/
-
-function convert_url_to_embed($url){
-    if(preg_match('/youtube/', $url)):
-        $youtube = parse_url($url);
-        parse_str($youtube[query], $youtube);
+/**
+ * Convert Custom Field URL to Embed Code
+ * 
+ * Outputs video-embed markup for video URLs
+ * added as 'video-embed' custom post meta 
+ * data. The function currently supports 
+ * YouTube and Vimeo URLs.
+ * 
+ * This function called by the tumblog_save_post_data()
+ * function, which is defined in /inc/metaboxes/tumblog-meta.php.
+ * 
+ * Template file: N/A
+ * 
+ * @todo	Convert to core WordPress oEmbed functionality
+ * 
+ * @link 	http://php.net/manual/en/function.preg-match.php 	preg_match()
+ * @link 	http://php.net/manual/en/function.parse-str.php 	parse_str()
+ * @link 	http://php.net/manual/en/function.explode.php 		explode()
+ * 
+ * @param	string	$url	(required) URL of video to embed
+ * @return	string	HTML markup for embedded video
+ * 
+ * @since	Micro 1.0
+ * 
+ */
+function convert_url_to_embed( $url ) {
+    if ( preg_match( '/youtube/', $url ) ) :
+        $youtube = parse_url( $url );
+        parse_str( $youtube[query], $youtube );
         $id = $youtube['v'];
         $embed = '
             <object type="application/x-shockwave-flash" style="width:500px; height:410px;" data="http://www.youtube.com/v/'.$id.'">
                 <param name="movie" value="http://www.youtube.com/v/'.$id.'" />
             </object>';
         return $embed;
-    elseif(preg_match('/vimeo/', $url)):
-        $vimeo = explode('/', $url);
+    elseif( preg_match( '/vimeo/', $url ) ) :
+        $vimeo = explode( '/', $url );
         $id = $vimeo[3];
         $embed = '
             <object type="application/x-shockwave-flash" style="width:500px; height:410px;" data="http://vimeo.com/moogaloop.swf?clip_id='.$id.'&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=ff9933&amp;fullscreen=1">
@@ -42,16 +96,28 @@ function convert_url_to_embed($url){
     endif;
 }
 
-/*** woo_tumblog_image
-**   since 1.0
-**   accepts array of args
-****************************************/
+if ( ! function_exists( 'woo_tumblog_image' ) ) {
 
-/* Wootumblog code copyright Woothemes */
-
-if (!(function_exists('woo_tumblog_image'))) {
-
-	function woo_tumblog_image($args) {
+	/**
+	* WooTumblog Image
+	* 
+	* Returns the post image, either the featured 
+	* image (i.e. Post Thumbnail), an image added 
+	* via custom field, or else the first image in 
+	* the post content.
+	* 
+	* @param	array	$args	(optional) Argument array
+	* @return	string	Markup for post image
+	* 
+	* Derived from code originally develped by WooThemes, for 
+	* the WooTumblog Plugin.
+	* @copyright	WooThemes
+	* @license		GPL
+	* 
+	* @since	Micro 1.0
+	* 
+	*/
+	function woo_tumblog_image( $args ) {
 		global $post;
 		
 		//Defaults

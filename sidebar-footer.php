@@ -1,10 +1,19 @@
 <?php
 /**
- * The Footer widget areas.
+ * Template part file that contains the default sidebar content
  *
- * @package WordPress
- * @subpackage Micro
- * @since Micro 1.0
+ * This file is called by footer.php, via the micro_footer() function
+ * 
+ * @uses		micro_footer_sidebar_class()	Defined in /functions.php
+ * 
+ * @link 		http://codex.wordpress.org/Function_Reference/is_active_sidebar	is_active_sidebar()
+ * @link 		http://codex.wordpress.org/Function_Reference/dynamic_sidebar	dynamic_sidebar()
+ * 
+ * @package 	Micro
+ * @copyright	Copyright (c) 2011, UpThemes
+ * @license		http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, v2 (or newer)
+ *
+ * @since 		Micro 1.0
  */
 
 	if (   ! is_active_sidebar( 'sidebar-3'  )
