@@ -13,13 +13,6 @@
 */
 
 $options = array (
-
-	array(  "name" => "Website Logo",
-            "desc" => "You should upload a logo with a size of 100x71.",
-            "id" => "logo",
-            "type" => "image",
-            "value" => "Upload Logo",
-            "url" => get_bloginfo("stylesheet_directory") . "/images/theme-logo.png"),
             
     array(  "name" => "Colors for Sidebar &amp; Footer",
             "desc" => "Enter a color here for the sidebar text.",
@@ -59,13 +52,7 @@ $options = array (
             "desc" => "You should upload a small PNG with a size of 16x16.",
             "id" => "favicon",
             "value" => "Upload Favicon",
-            "type" => "image"),
-            
-	array(  "name" => "Custom CSS",
-            "desc" => "Enter your own CSS styles here.",
-            "id" => "customcss",
-            "type" => "textarea",
-            "attr" => array("rows" => "15"))
+            "type" => "image")
             
 );
 

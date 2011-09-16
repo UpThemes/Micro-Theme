@@ -43,12 +43,12 @@ define( 'THEME_NAME', 'micro' );
 /**
  * Bootstrap the UpThemes Framework
  */
-require_once( get_template_directory_uri() . 'admin/admin.php' ); 
+require_once( get_template_directory() . '/admin/admin.php' ); 
 
 /**
  * Include the Header Extensions Functions File
  */
-require_once( get_template_directory_uri() . 'inc/extensions/header-extensions.php' );
+require_once( get_template_directory() . '/inc/extensions/header-extensions.php' );
 
 /**
  * Include the Comments Extensions Functions File
@@ -59,7 +59,7 @@ require_once( get_template_directory_uri() . 'inc/extensions/header-extensions.p
  *  - micro_comments
  *  - wp_list_comments (callback)
  */
-require_once( get_template_directory_uri() . 'inc/extensions/comments-extensions.php' );
+require_once( get_template_directory() . '/inc/extensions/comments-extensions.php' );
 
 /**
  * Include the Content Extensions Functions File
@@ -84,7 +84,7 @@ require_once( get_template_directory_uri() . 'inc/extensions/comments-extensions
  *  - micro_post_type()
  *  - micro_time_posted()
  */
-require_once( get_template_directory_uri() . 'inc/extensions/content-extensions.php' );
+require_once( get_template_directory() . '/inc/extensions/content-extensions.php' );
 
 /**
  * Include the Footer Extensions Functions File
@@ -95,7 +95,7 @@ require_once( get_template_directory_uri() . 'inc/extensions/content-extensions.
  *  - micro_footer
  *  - wp_footer
  */
-require_once( get_template_directory_uri() . 'inc/extensions/footer-extensions.php' );
+require_once( get_template_directory() . '/inc/extensions/footer-extensions.php' );
 
 /**
  * Include the Sidebar Extensions Functions File
@@ -106,7 +106,7 @@ require_once( get_template_directory_uri() . 'inc/extensions/footer-extensions.p
  * and sidebar-footer.php
  *  - micro_before_sidebar
  */
-require_once( get_template_directory_uri() . 'inc/extensions/sidebar-extensions.php' );
+require_once( get_template_directory() . '/inc/extensions/sidebar-extensions.php' );
 
 /**
  * Include the Helper Functions File
@@ -117,7 +117,7 @@ require_once( get_template_directory_uri() . 'inc/extensions/sidebar-extensions.
  *  - convert_url_to_embed()
  *  - woo_tumblog_image()
  */
-require_once( get_template_directory_uri() . 'inc/helpers.php' );
+require_once( get_template_directory() . '/inc/helpers.php' );
 
 /**
  * Include the Media Functions File
@@ -128,7 +128,7 @@ require_once( get_template_directory_uri() . 'inc/helpers.php' );
  *  - micro_resize_video()
  *  - micro_tumblog_embed()
  */
-require_once( get_template_directory_uri() . 'inc/media.php' );
+require_once( get_template_directory() . '/inc/media.php' );
 
 /**
  * Include the Header Extensions Functions File
@@ -136,7 +136,7 @@ require_once( get_template_directory_uri() . 'inc/media.php' );
  * The /inc/hooks.php file defines
  * all of the Theme's custom hook template functions
  */
-require_once( get_template_directory_uri() . 'inc/hooks.php' );
+require_once( get_template_directory() . '/inc/hooks.php' );
 
 /**
  * Include the Navigation Functions File
@@ -149,7 +149,7 @@ require_once( get_template_directory_uri() . 'inc/hooks.php' );
  * functions hooked into custom Theme hooks
  *  - micro_after_posts
  */
-require_once( get_template_directory_uri() . 'inc/navigation.php' );
+require_once( get_template_directory() . '/inc/navigation.php' );
 
 /**
  * Include the Header Extensions Functions File
@@ -157,7 +157,7 @@ require_once( get_template_directory_uri() . 'inc/navigation.php' );
  * The /inc/expressapp.php file defines
  * SOMETHING THAT I DON'T KNOW YET
  */
-require_once( get_template_directory_uri() . 'inc/expressapp.php' );
+require_once( get_template_directory() . '/inc/expressapp.php' );
 
 /**
  * Include the Tumblog Metaboxes Functions File
@@ -165,7 +165,7 @@ require_once( get_template_directory_uri() . 'inc/expressapp.php' );
  * The /inc/metaboxes/tumblog-meta.php file includes
  * the Theme's Tumblog metabox functions
  */
-require_once( get_template_directory_uri() . 'inc/metaboxes/tumblog-meta.php' );
+require_once( get_template_directory() . '/inc/metaboxes/tumblog-meta.php' );
 
 /**
  * Include the Theme Update Functions File
@@ -173,8 +173,7 @@ require_once( get_template_directory_uri() . 'inc/metaboxes/tumblog-meta.php' );
  * The /inc/update.php file includes
  * the Theme's automatic update functions
  */
-require_once( get_template_directory_uri() . 'inc/update.php' );
-
+require_once( get_template_directory() . '/inc/update.php' );
 
 
 /**
@@ -234,9 +233,51 @@ function micro_theme_init(){
 	
 	add_custom_background();
 
+	define('HEADER_TEXTCOLOR', '222222');
+	define('HEADER_IMAGE', '%s/images/theme-logo.png'); // %s is the template dir uri
+	define('HEADER_IMAGE_WIDTH', 140); // use width and height appropriate for your theme
+	define('HEADER_IMAGE_HEIGHT', 140);
+
+	add_custom_image_header('micro_header_style','micro_admin_header_style');
+
 }
 // Hook micro_theme_init() into init
 add_action('init','micro_theme_init');
+
+/**
+ * Header image CSS displayed on website front-end
+ * 
+ * @since	Micro 1.0
+ */
+function micro_header_style() {
+    ?><style type="text/css">
+        .logo {
+            background: url(<?php header_image(); ?>);
+            width: <?php echo HEADER_IMAGE_WIDTH; ?>px;
+            height: <?php echo HEADER_IMAGE_HEIGHT; ?>px;
+            text-indent: -9000px;
+            text-align: left;
+            margin: 0 auto;
+            max-width: 100%;
+        }
+    </style><?php
+}
+
+/**
+ * Include header default styles in admin preview
+ * 
+ * @since	Micro 1.0
+ */
+function micro_admin_header_style() {
+    ?><style type="text/css">
+        .logo {
+            width: <?php echo HEADER_IMAGE_WIDTH; ?>px;
+            height: <?php echo HEADER_IMAGE_HEIGHT; ?>px;
+            background: no-repeat;
+        }
+    </style><?php
+}
+
 
 /**
  * Enqueue link for responsive CSS stylesheet
