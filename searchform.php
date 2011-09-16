@@ -20,6 +20,6 @@
 <aside id="search">
 	<form action="<?php echo esc_url( home_url( '/' ) ); ?>" method="get" class="search-form">
 	    <input type="text" name="s" class="search_field" value="<?php the_search_query(); ?>"/>
-	    <input alt="<?php _e('Search','micro'); ?>" type="image" name="submit" class="search_button" src="<?php echo get_template_directory_uri() . '/images/ico-search.png'; ?>" />
+	    <input alt="<?php _e( 'Search','micro' ); ?>" type="image" name="submit" class="search_button" src="<?php echo get_template_directory_uri() . '/images/ico-search.png'; ?>" />
 	</form>				
 </aside><!-- #search -->
