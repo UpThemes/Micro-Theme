@@ -4,7 +4,7 @@
  * 
  * The /inc/navigation.php file defines
  * all of the Theme's custom, navigation functions
- *  - get_the_page_count()
+ *  - micro_get_the_page_count()
  * 
  * This file also defines navigation-related callback 
  * functions hooked into custom Theme hooks
@@ -36,7 +36,7 @@
  * 
  * Template file: footer.php
  * 
- * @uses	get_the_page_count()	Defined in /inc/navigation.php
+ * @uses	micro_get_the_page_count()	Defined in /inc/navigation.php
  * 
  * @link 	http://codex.wordpress.org/Function_Reference/is_single 			is_single()
  * @link 	http://codex.wordpress.org/Function_Reference/previous_post_link 	previous_post_link()
@@ -87,7 +87,7 @@ function micro_attach_navigation(){
 				previous_posts_link( "<span>" . __('&larr; Older Posts','micro') . "</span>" );
 				echo '</li>';
 ?>
-				<li class="number"><?php if( is_archive() || is_category() || is_tag() || is_home() || is_author() || is_search() ) get_the_page_count(); ?></li>
+				<li class="number"><?php if( is_archive() || is_category() || is_tag() || is_home() || is_author() || is_search() ) micro_get_the_page_count(); ?></li>
 <?php
 				echo '<li class="next-page">';
 				next_posts_link( "<span>" . __('Newer Posts &rarr;','micro') . "</span>" );
@@ -131,7 +131,7 @@ add_action( 'micro_after_posts', 'micro_attach_navigation' );
  * @since	Micro 1.0
  * 
  */
-function get_the_page_count(){
+function micro_get_the_page_count(){
 
 		global $wp_query;
 	

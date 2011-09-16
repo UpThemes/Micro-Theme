@@ -4,8 +4,8 @@
  * 
  * The /inc/helpers.php file defines
  * all of the Theme's general, custom/helper functions
- *  - attach_image_content()
- *  - convert_url_to_embed()
+ *  - micro_attach_image_content()
+ *  - micro_convert_url_to_embed()
  *  - woo_tumblog_image()
  * 
  * @link 		http://php.net/manual/en/function.function-exists.php 					function_exists()
@@ -39,7 +39,7 @@
  * @since	Micro 1.0
  * 
  */
-function attach_image_content(){
+function micro_attach_image_content(){
 
 	if( function_exists( 'woo_tumblog_image' ) )
 		woo_tumblog_image( array( "id" => get_the_ID(), "width" => 500 ) );
@@ -73,7 +73,7 @@ function attach_image_content(){
  * @since	Micro 1.0
  * 
  */
-function convert_url_to_embed( $url ) {
+function micro_convert_url_to_embed( $url ) {
     if ( preg_match( '/youtube/', $url ) ) :
         $youtube = parse_url( $url );
         parse_str( $youtube[query], $youtube );

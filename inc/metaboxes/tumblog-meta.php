@@ -391,7 +391,7 @@ jQuery(function($){
  * Validates/sanitizes and saves post custom meta 
  * data entered via the Tumblog metabox.
  * 
- * @uses	convert_url_to_embed	Defined in /inc/media.php
+ * @uses	micro_convert_url_to_embed	Defined in /inc/media.php
  * 
  * @link 	http://codex.wordpress.org/Function_Reference/current_user_can 	current_user_can()
  * @link 	http://codex.wordpress.org/Function_Reference/update_post_meta 	update_post_meta()
@@ -433,7 +433,7 @@ function tumblog_save_postdata( $post_id ) {
 	$image = $_POST['image'];
 	$videoembed = $_POST['video-embed'];
 	$videourl = $_POST['video-url'];
-	if( $videourl && function_exists('convert_url_to_embed') )$videoembed = convert_url_to_embed($videourl);
+	if( $videourl && function_exists( 'micro_convert_url_to_embed' ) )$videoembed = micro_convert_url_to_embed( $videourl );
 	$videoembed = $videoembed ? $videoembed : $_POST['video-embed'];
 	$quoteauthor = $_POST['quote-author'];
 	$quoteurl = $_POST['quote-url'];

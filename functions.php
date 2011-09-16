@@ -113,8 +113,8 @@ require_once( get_template_directory() . '/inc/extensions/sidebar-extensions.php
  * 
  * The /inc/helpers.php file defines
  * all of the Theme's general, custom/helper functions
- *  - attach_image_content()
- *  - convert_url_to_embed()
+ *  - micro_attach_image_content()
+ *  - micro_convert_url_to_embed()
  *  - woo_tumblog_image()
  */
 require_once( get_template_directory() . '/inc/helpers.php' );
@@ -143,7 +143,7 @@ require_once( get_template_directory() . '/inc/hooks.php' );
  * 
  * The /inc/navigation.php file defines
  * all of the Theme's custom, navigation functions
- *  - get_the_page_count()
+ *  - micro_get_the_page_count()
  * 
  * This file also defines navigation-related callback 
  * functions hooked into custom Theme hooks
