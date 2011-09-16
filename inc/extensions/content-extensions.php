@@ -928,7 +928,7 @@ function micro_content( $content ) {
 			if( function_exists( 'woo_tumblog_image' ) )
 				$content .= woo_tumblog_image( array("id" => get_the_ID(), "width" => CONTENT_WIDTH, "return" => true ) );
 			elseif( function_exists( 'has_theme_support' ) && has_theme_support( 'post-thumbnails' ) )
-				$content .= get_the_post_thumbnail( array( CONTENT_WIDTH, 99999, 1 ) );
+				$content .= get_the_post_thumbnail( 'full-width-image' );
 		break;
 	
 		case 'audio':
