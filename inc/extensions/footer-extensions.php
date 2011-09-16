@@ -211,11 +211,7 @@ function micro_add_disqus(){
 
 	global $up_options;
 
-    if( $up_options->disqus ): ?>
-    
-	    <?php if( is_single() ): ?>
-	    <script type="text/javascript" src="http://disqus.com/forums/<?php echo $up_options->disqus; ?>/embed.js"></script>
-	    <?php endif; ?>
+    if( $up_options->disqus && is_single() && comments_open() ): ?> 
 
 		<script type="text/javascript">
 		

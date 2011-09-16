@@ -56,8 +56,12 @@ function micro_add_scripts(){
 	// Moved form micro_init() function
 	wp_enqueue_script( 'scrolling', get_template_directory_uri() . '/inc/scripts/scrolling/scrolling.js' );
 	// Enqueue comment-reply script
-	if ( is_single() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
+	if ( is_single() && comments_open() ) {
+		if ( get_option( 'thread_comments' ) ) {
+			wp_enqueue_script( 'comment-reply' );
+		}
+		global $up_options;
+		wp_enqueue_script( 'disqus', 'http://disqus.com/forums/' . $up_options->disqus . '/embed.js', array(), false, true );
 	}
 
 }
