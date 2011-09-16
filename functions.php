@@ -366,21 +366,6 @@ function micro_excerpt_length( $length ) {
 add_filter( 'excerpt_length', 'micro_excerpt_length' );
 
 /**
- * Filter the Excerpt More text
- * 
- * Returns a "Continue Reading" link for excerpts,
- * rather than the default "[...]" text.
- * 
- * @link 	http://codex.wordpress.org/Function_Reference/esc_url		esc_url()
- * @link 	http://codex.wordpress.org/Function_Reference/get_permalink	get_permalink()
- *
- * @since Micro 1.0
- */
-function micro_continue_reading_link() {
-	return ' <a href="'. esc_url( get_permalink() ) . '">' . __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'micro' ) . '</a>';
-}
-
-/**
  * Dynamically set CSS class for footer Widget container
  * 
  * Count the number of footer sidebars to enable dynamic 
