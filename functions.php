@@ -206,9 +206,6 @@ function micro_theme_init(){
 	// Add custom image sizes
 	add_image_size( 'full-width-image', $content_width, 99999, 0 );
 	
-	deregister_theme_layout('left_column_grid');
-	deregister_theme_layout('right_column_grid');
-	
 	add_theme_support( 'post-formats', array( 'aside', 'image', 'link', 'quote', 'status', 'video', 'audio', 'gallery' ) );
 	add_theme_support( 'nav-menus' );
 	add_theme_support( 'automatic-feed-links' );
@@ -226,6 +223,26 @@ function micro_theme_init(){
 }
 // Hook micro_theme_init() into after_setup_theme action
 add_action( 'after_setup_theme', 'micro_theme_init' );
+
+/**
+ * Configure UpThemes Framework
+ * 
+ * Deregisters theme layouts added by 
+ * the UpThemes Framework.
+ * 
+ * @uses 	deregister_theme_layout		Defined in /admin/library/engines/layout-engine.php
+ *
+ * @since Micro 1.0
+ */
+function micro_upfw_config() {
+	
+	deregister_theme_layout('left_column_grid');
+	deregister_theme_layout('right_column_grid');
+
+}
+// Hook micro_upfw_config() into the init action, 
+// so that it fires AFTER framework is bootstrapped
+add_action( 'init', 'micro_upfw_config' );
 
 /**
  * Header image CSS displayed on website front-end
