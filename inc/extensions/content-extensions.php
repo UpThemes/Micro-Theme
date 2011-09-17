@@ -483,7 +483,7 @@ function micro_post_title(){
 	$title = $title ? $title . " &#8594;" : get_the_title();
 	
 	if( ! $postformat || $postformat == 'aside' || $postformat == 'status' || ( isset( $up_options->showtitle ) && in_array( $postformat, $up_options->showtitle ) ) ):
-	    if( ( $url && get_post_format( 'link' ) ) || ! is_singular() ): ?>
+	    if( ( $url && 'link' == get_post_format() ) || ! is_singular() ): ?>
 			<h2 class="title"><a href="<?php echo $url; ?>"><?php echo $title; ?></a></h2>
 	    <?php else: ?>
 			<h1 class="title"><?php echo $title; ?></h1>
