@@ -169,7 +169,7 @@ add_action( 'micro_footer', 'micro_close_footer', 100 );
  */
 function micro_add_ga(){
 
-    if( $up_options->google_analytics ): ?>
+    if( isset( $up_options->google_analytics ) ): ?>
 	    <script type="text/javascript">
 	    var _gaq = _gaq || [];
 	    _gaq.push(['_setAccount', '<?php echo $up_options->google_analytics; ?>']);
