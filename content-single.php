@@ -56,6 +56,8 @@
 	micro_post_footer(); 
 	?>
 
+</div> <!-- div#id-{$postid} -->
+
 	<?php 
 	/**
 	 * Fire the 'micro_comments' custom action hook
