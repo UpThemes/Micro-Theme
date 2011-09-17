@@ -84,13 +84,13 @@ function micro_attach_navigation(){
 				<?php
 
 				echo '<li class="prev-page">';
-				previous_posts_link( "<span>" . __('&larr; Older Posts','micro') . "</span>" );
+				previous_posts_link( "<span>" . __('&larr; Newer Posts','micro') . "</span>" );
 				echo '</li>';
 ?>
 				<li class="number"><?php if( is_archive() || is_category() || is_tag() || is_home() || is_author() || is_search() ) micro_get_the_page_count(); ?></li>
 <?php
 				echo '<li class="next-page">';
-				next_posts_link( "<span>" . __('Newer Posts &rarr;','micro') . "</span>" );
+				next_posts_link( "<span>" . __('Older Posts &rarr;','micro') . "</span>" );
 				echo '</li>';
 
 				?>
