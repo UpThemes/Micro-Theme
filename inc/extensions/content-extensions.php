@@ -460,11 +460,11 @@ function micro_post_title(){
 	if( get_post_type() == 'post' ):
 	
 	/* Post Icons */
-	$post_icon_pref = $up_options->post_format_icon ? $up_options->post_format_icon : 'left';
+	$post_icon_pref = ( isset( $up_options->post_format_icon ) ? $up_options->post_format_icon : 'left' );
 	$post_icon_pref = 'icon-'.$post_icon_pref;
 		
 		if( ! $postformat || $postformat == 'aside' || $postformat == 'status' || ( isset( $up_options->showtitle ) && in_array( $postformat, $up_options->showtitle ) ) ) : ?>
-		<div class="post-type <?php echo $post_icons_pref;?>">
+		<div class="post-type <?php echo $post_icon_pref;?>">
 			<a href="<?php echo get_post_format_link( get_post_format() ); ?>"><?php echo $post->ID; ?></a>
 		</div>
 	
