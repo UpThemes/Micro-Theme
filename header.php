@@ -36,6 +36,13 @@
  *
  * @since 		Micro 1.0
  */
+
+/**
+ * Globalize $up_options
+ * 
+ * @global	array	$up_options		Theme Options
+ */
+global $up_options;
 ?>
 <!doctype html>
 <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
