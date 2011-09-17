@@ -73,7 +73,7 @@ function micro_description(){
 	global $up_options; ?>
 
 				<aside class="blog-information">
-					<?php if( ! $up_options->logo ) : ?>
+					<?php if( ! isset( $up_options->logo ) ) : ?>
 					<a class="title" href="<?php echo home_url( '/' ); ?>"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a>
 					<?php else: ?>
 		            <a href="<?php echo home_url( '/' ); ?>"><img src="<?php echo esc_url( $up_options->logo ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" class="logo" /></a>
