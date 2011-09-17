@@ -264,36 +264,37 @@ jQuery(function($){
 </script>
 <?php
 	
-	foreach( $metaboxes as $metabox ):
+	foreach( $metaboxes as $metabox ) :
 	
 		$type = $metabox['type'];
 		$name = $metabox['name'];
 		$value = get_post_meta($post->ID, $metabox['name'], true);
 
-		echo "<div class='{$metabox['name']}'>";
-		echo "<label for='{$metabox['name']}'>{$metabox['label']}</label>";
+		echo '<div class="' . $metabox['name'] . '">';
+		echo '<label for="' . $metabox['name'] . '">' . $metabox['label'] . '</label>';
 				
-		switch($type):
+		switch( $type ) :
 		
-			case 'text':
-				echo "<input type='text' id='{$metabox['name']}' name='{$metabox['name']}' value='{$value}'>";
+			case 'text' :
+				echo '<input type="text" id="' . $metabox['name'] . '" name="' . $metabox['name'] . '" value="' . esc_attr( $value ) . '">';
 				break;
 			
-			case 'textarea':
-				echo "<textarea cols='10' id='{$metabox['name']}' name='{$metabox['name']}'>{$value}</textarea>";
+			case 'textarea' :
+				echo '<textarea cols="10" id="' . $metabox['name'] . '" name="' . $metabox['name'] . '">' . esc_textares( $value ) . '</textarea>';
 				break;
 			
-			case 'select':?>
-				<select id='<?php echo $metabox['name'];?>' name='<?php echo $metabox['name'];?>'>
+			case 'select' :
+				?>
+				<select id="<?php echo $metabox['name']; ?>" name="<?php echo $metabox['name']; ?>">
 					<?php foreach($metabox['options'] as $name => $val):?>
-						<?php if($val === $value) $check_selected = 'selected="selected"';?>
-						<option value="<?php echo $val;?>" <?php echo $check_selected;?>><?php echo $name;?></option>
-						<?php $check_selected = '';?>
+						<option value="<?php echo $val;?>" <?php selected( $value == $val ); ?>><?php echo $name;?></option>
 					<?php endforeach;?>
 				</select>
-				<?php break;
+				<?php 
+				break;
 			
-			case 'image':?>
+			case 'image' :
+				?>
 				<script type="text/javascript">
 					jQuery(function($){
 						<?php //Upload Security
@@ -365,20 +366,21 @@ jQuery(function($){
 				<!-- Upload Status Input -->
 				<div class="status hide" id="<?php echo $metabox['name']; ?>status"></div>
 				<div class="clear"></div>
-			<?php break;
+				<?php 
+				break;
 			
-			case 'video':
-				echo "<textarea cols='10' id='{$metabox['name']}' name='{$metabox['name']}'>{$value}</textarea>";
+			case 'video' :
+				echo '<textarea cols="10" id="' . $metabox['name'] . '" name="' . $metabox['name'] . '">' . esc_textarea( $value ) . '</textarea>';
 				break;
 			
 		endswitch;
 		
-		switch($name):
+		switch( $name ):
 			
-			case 'link-url':
+			case 'link-url' :
 				echo '<kbd>Enter an optional title and description in the standard title and content fields above.</kbd>';
 				break;
-			case 'gallery':
+			case 'gallery' :
 				echo '<kbd>Enter an optional title and description in the standard title and content fields above.</kbd>';
 				break;
 			
