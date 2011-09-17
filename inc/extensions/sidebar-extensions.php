@@ -112,10 +112,9 @@ add_action( 'micro_before_sidebar', 'micro_description', 60 );
  * 
  * Template file: sidebar.php
  * 
+ * @link 	http://codex.wordpress.org/Function_Reference/has_nav_menu		has_nav_menu()
  * @link 	http://codex.wordpress.org/Function_Reference/wp_list_pages		wp_list_pages()
  * @link 	http://codex.wordpress.org/Function_Reference/wp_nav_menu		wp_nav_menu()
- * 
- * @link 	http://php.net/manual/en/function.function-exists.php 			function_exists()
  * 
  * @param	none
  * @return	string	HTML markup for sidebar navigation menu
@@ -125,7 +124,7 @@ add_action( 'micro_before_sidebar', 'micro_description', 60 );
  */
 function micro_sidebar_menu(){
 				
-				if ( function_exists( 'wp_nav_menu' ) ):
+				if ( has_nav_menu( 'primary' ) ):
 					wp_nav_menu(array(
 								  'theme_location'  => 'primary',
 								  'menu'            => 'navigation', 

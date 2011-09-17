@@ -278,11 +278,11 @@ if ( ! function_exists( 'woo_tumblog_image' ) ) {
 				$href = $custom_field; 		
 				$custom_field = woo_tumblog_cleanSource( $custom_field );
 	
-				// Check if WPMU and set correct path AND that image isn't external
-				if ( function_exists('get_current_site') && strpos($custom_field,"http://") !== 0 ) {
+				// Check if MultiSite Network and set correct path AND that image isn't external
+				if ( is_multisite() && strpos( $custom_field, "http://" ) !== 0 ) {
 					get_current_site();
 					//global $blog_id; Breaks with WP3 MS
-					if ( !$blog_id ) {
+					if ( ! $blog_id ) {
 						global $current_blog;
 						$blog_id = $current_blog->blog_id;				
 					}

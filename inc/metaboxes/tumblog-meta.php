@@ -433,7 +433,7 @@ function tumblog_save_postdata( $post_id ) {
 	$image = $_POST['image'];
 	$videoembed = $_POST['video-embed'];
 	$videourl = $_POST['video-url'];
-	if( $videourl && function_exists( 'micro_convert_url_to_embed' ) )$videoembed = micro_convert_url_to_embed( $videourl );
+	if( $videourl ) $videoembed = micro_convert_url_to_embed( $videourl );
 	$videoembed = $videoembed ? $videoembed : $_POST['video-embed'];
 	$quoteauthor = $_POST['quote-author'];
 	$quoteurl = $_POST['quote-url'];

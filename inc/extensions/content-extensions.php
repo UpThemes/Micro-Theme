@@ -878,7 +878,7 @@ add_action( 'micro_post_footer', 'micro_showmeta', 40 );
  * @link 	http://codex.wordpress.org/Function_Reference/get_the_ID 					get_the_ID()
  * @link 	http://codex.wordpress.org/Function_Reference/get_template_directory_uri	get_template_directory_uri()
  * @link 	http://codex.wordpress.org/Function_Reference/get_the_post_thumbnail 		get_the_post_thumbnail()
- * @link 	http://codex.wordpress.org/Function_Reference/has_theme_support 			has_theme_support()
+ * @link 	http://codex.wordpress.org/Function_Reference/has_post_thumbnail 			has_post_thumbnail()
  * @link 	http://codex.wordpress.org/Function_Reference/wp_rand 						wp_rand()
  * 
  * @link 	http://php.net/manual/en/function.function-exists.php 						function_exists()
@@ -927,7 +927,7 @@ function micro_content( $content ) {
 		case 'image':
 			if( function_exists( 'woo_tumblog_image' ) )
 				$content .= woo_tumblog_image( array("id" => get_the_ID(), "width" => CONTENT_WIDTH, "return" => true ) );
-			elseif( function_exists( 'has_theme_support' ) && has_theme_support( 'post-thumbnails' ) )
+			elseif( has_post_thumbnail() )
 				$content .= get_the_post_thumbnail( 'full-width-image' );
 		break;
 	

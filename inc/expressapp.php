@@ -30,7 +30,7 @@
  * @since 		Micro 1.0
  */
 
-if( ! function_exists('woo_new_taxonomy_tag') ):
+if( ! function_exists( 'woo_new_taxonomy_tag' ) ):
 
 /**
  * Set taxonomies for post
