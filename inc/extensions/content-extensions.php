@@ -197,6 +197,7 @@ function micro_no_posts(){ ?>
  */
 function micro_gallery() {
 	global $post;
+	$output = '';
 	$images = micro_post_images();
 	$style = get_post_meta( $post->ID, 'gallery', true );
 	if( is_array( $images ) ) :
@@ -438,8 +439,8 @@ function micro_image_slider( $images ){
  * @link 	http://codex.wordpress.org/Function_Reference/get_the_title 		get_the_title()
  * @link 	http://codex.wordpress.org/Function_Reference/is_singular 			is_singular()
  * 
- * @link 	http://php.net/manual/en/function.empty.php 						empty()
  * @link 	http://php.net/manual/en/function.in-array.php 						in_array()
+ * @link 	http://php.net/manual/en/function.isset.php 						isset()
  * 
  * @param	none
  * @return	string	HTML markup for post title
@@ -462,7 +463,7 @@ function micro_post_title(){
 	$post_icon_pref = $up_options->post_format_icon ? $up_options->post_format_icon : 'left';
 	$post_icon_pref = 'icon-'.$post_icon_pref;
 		
-		if( ! $postformat || $postformat == 'aside' || $postformat == 'status' || ( ! empty( $up_options->showtitle ) && in_array( $postformat, $up_options->showtitle ) ) ) : ?>
+		if( ! $postformat || $postformat == 'aside' || $postformat == 'status' || ( isset( $up_options->showtitle ) && in_array( $postformat, $up_options->showtitle ) ) ) : ?>
 		<div class="post-type <?php echo $post_icons_pref;?>">
 			<a href="<?php echo get_post_format_link( get_post_format() ); ?>"><?php echo $post->ID; ?></a>
 		</div>
@@ -480,7 +481,7 @@ function micro_post_title(){
 	$title = get_post_meta( get_the_ID(), 'link-text', true );
 	$title = $title ? $title . " &#8594;" : get_the_title();
 	
-	if( !$postformat || $postformat == 'aside' || $postformat == 'status' || ( ! empty( $up_options->showtitle ) && in_array( $postformat, $up_options->showtitle ) ) ):
+	if( !$postformat || $postformat == 'aside' || $postformat == 'status' || ( isset( $up_options->showtitle ) && in_array( $postformat, $up_options->showtitle ) ) ):
 	    if( ( $url && get_post_format( 'link' ) ) || ! is_singular() ): ?>
 			<h2 class="title"><a href="<?php echo $url; ?>"><?php echo $title; ?></a></h2>
 	    <?php else: ?>
@@ -599,6 +600,7 @@ add_action( 'micro_post_header', 'micro_close_before_post', 500 );
  * @link 	http://codex.wordpress.org/Function_Reference/get_post_format 		get_post_format()
  * 
  * @link 	http://php.net/manual/en/function.in-array.php 						in_array()
+ * @link 	http://php.net/manual/en/function.isset.php 						isset()
  * 
  * @param	none
  * @return	string	Markup for post author metadata
@@ -611,7 +613,7 @@ function micro_author_meta(){
 	$postformat = get_post_format();
 	$postformat = $postformat ? $postformat : 'standard';
 
-	if( is_array( $up_options->showmeta ) && in_array( $postformat, $up_options->showmeta ) ) 
+	if( isset( $up_options->showmeta ) && in_array( $postformat, $up_options->showmeta ) ) 
 		micro_author_details();
    	
 }
@@ -647,6 +649,7 @@ add_action( 'micro_postmeta', 'micro_author_meta' );
  * @link 	http://codex.wordpress.org/Function_Reference/the_category 			the_category()
  * 
  * @link 	http://php.net/manual/en/function.in-array.php 						in_array()
+ * @link 	http://php.net/manual/en/function.isset.php 						isset()
  * 
  * @param	none
  * @return	string	Markup for post categories metadata
@@ -659,7 +662,7 @@ function micro_categories_meta(){
 	$postformat = get_post_format();
 	$postformat = $postformat ? $postformat : 'standard';
 	
-	if( is_array($up_options->showcategory) && in_array($postformat, $up_options->showcategory)):
+	if( isset( $up_options->showcategory ) && in_array( $postformat, $up_options->showcategory ) ) :
 		echo "<div class='post-category'>".__('Posted in ', 'micro');
 		the_category(', ');
 		echo "</div>";
@@ -697,6 +700,7 @@ add_action( 'micro_postmeta', 'micro_categories_meta' );
  * @link 	http://codex.wordpress.org/Function_Reference/the_category 			the_category()
  * 
  * @link 	http://php.net/manual/en/function.in-array.php 						in_array()
+ * @link 	http://php.net/manual/en/function.isset.php 						isset()
  * 
  * @param	none
  * @return	string	Markup for post timestamp metadata
@@ -709,7 +713,7 @@ function micro_time_meta(){
 	$postformat = get_post_format();
 	$postformat = $postformat ? $postformat : 'standard';
 
-    if( is_array($up_options->showtime) && in_array($postformat, $up_options->showtime)) 
+    if( isset( $up_options->showtime ) && in_array( $postformat, $up_options->showtime ) ) 
     	micro_time_posted();
 }
 
@@ -744,6 +748,7 @@ add_action( 'micro_postmeta', 'micro_time_meta' );
  * @link 	http://codex.wordpress.org/Function_Reference/the_tags 				the_tags()
  * 
  * @link 	http://php.net/manual/en/function.in-array.php 						in_array()
+ * @link 	http://php.net/manual/en/function.isset.php 						isset()
  * 
  * @param	none
  * @return	string	Markup for post tags metadata
@@ -756,7 +761,7 @@ function micro_tags_meta(){
 	$postformat = get_post_format();
 	$postformat = $postformat ? $postformat : 'standard';
 	
-	if( is_array( $up_options->showtag ) && in_array( $postformat, $up_options->showtag ) ) 
+	if( isset( $up_options->showtag ) && in_array( $postformat, $up_options->showtag ) ) 
     the_tags( '<div class="tags">',' ','</div>' );
 }
 // Hook micro_tags_meta() into micro_postmeta action
@@ -900,7 +905,7 @@ function micro_content( $content ) {
 		
 	$content = '';
 	
-	switch($posttype){
+	switch( $posttype ){
 		
 		case 'quote':
 			$url = get_post_meta(get_the_ID(), 'quote-url', true);
