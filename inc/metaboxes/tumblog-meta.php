@@ -280,7 +280,7 @@ jQuery(function($){
 				break;
 			
 			case 'textarea' :
-				echo '<textarea cols="10" id="' . $metabox['name'] . '" name="' . $metabox['name'] . '">' . esc_textares( $value ) . '</textarea>';
+				echo '<textarea cols="10" id="' . $metabox['name'] . '" name="' . $metabox['name'] . '">' . esc_textarea( $value ) . '</textarea>';
 				break;
 			
 			case 'select' :
@@ -356,7 +356,7 @@ jQuery(function($){
 				</div>	
 
 				<div class="uploadify">
-					<button type="button" id="<?php echo $metabox['name']; ?>" class="secondary" <?php echo $attr; ?>><?php _e('Upload Image','upfw'); ?></button>
+					<button type="button" id="<?php echo $metabox['name']; ?>" class="secondary" <?php global $attr; echo $attr; ?>><?php _e('Upload Image','upfw'); ?></button>
 					<span id="<?php echo $metabox['name']; ?>loader" class="loader"></span>
 				</div>
 
