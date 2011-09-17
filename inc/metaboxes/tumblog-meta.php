@@ -15,38 +15,18 @@
  */
 
 /**
- * Add Tumblog Metabox to Post Edit Screen
+ * Customize Meta Boxes on Post Edit Screen
  * 
  * Adds the Tumblog metabox to the post-edit
  * screen, to allow entry of Tumblog-style 
  * post content based on selected Post Format 
  * type.
  * 
- * @link 	http://codex.wordpress.org/Function_Reference/add_meta_box 			add_meta_box()
- * @link 	http://codex.wordpress.org/Function_Reference/wp_enqueue_script 	wp_enqueue_script()
- * 
- * @param	none
- * @return	none
- * 
- * @since	Micro 1.0
- * 
- */
-function tumblog_add_custom_box() {
-	$upthemes =  THEME_DIR.'/admin/';
-	
-	add_meta_box( 'tumblog', __( 'Tumblog Options', 'micro' ), 'tumblog_meta_box', 'post', 'normal', 'high' );
-	wp_enqueue_script( 'ajaxupload', $upthemes."js/ajaxupload.js", array( 'jquery' ) );
-}
-// Hook tumblog_add_custom_box() into admin_init action
-add_action( 'admin_init', 'tumblog_add_custom_box', 1 );
-
-/**
- * Remove Custom Field Metabox From Post Edit Screen
- * 
  * Removes the standard custom field metabox from 
  * the post-edit screen, since custom post meta 
  * data will be added via the Tumblog metabox.
  * 
+ * @link 	http://codex.wordpress.org/Function_Reference/add_meta_box 			add_meta_box()
  * @link 	http://codex.wordpress.org/Function_Reference/remove_meta_box 		remove_meta_box()
  * 
  * @param	none
@@ -55,11 +35,38 @@ add_action( 'admin_init', 'tumblog_add_custom_box', 1 );
  * @since	Micro 1.0
  * 
  */
-function remove_post_custom_fields() {
+function tumblog_customize_meta_boxes() {
+	
+	// Remove 'postcustom' metabox
 	remove_meta_box( 'postcustom' , 'post' , 'normal' ); 
+	// Add Tumblog metabox
+	add_meta_box( 'tumblog', __( 'Tumblog Options', 'micro' ), 'tumblog_meta_box', 'post', 'normal', 'high' );
 }
-// Hook remove_post_custom_fields() into admin_menu action
-add_action( 'admin_menu' , 'remove_post_custom_fields' );
+// Hook tumblog_add_custom_box() into admin_init action
+add_action( 'add_meta_boxes_post', 'tumblog_customize_meta_boxes' );
+
+/**
+ * Enqueue Tumblog Scripts
+ * 
+ * @link 	http://codex.wordpress.org/Function_Reference/wp_enqueue_script 	wp_enqueue_script()
+ * 
+ * @param	none
+ * @return	none
+ * 
+ * @since	Micro 1.0
+ * 
+ */
+function tumblog_enqueue_scripts() {
+	
+	global $pagenow;
+	if ( 'post.php' == $pagenow ) {
+		$upthemes =  THEME_DIR.'/admin/';
+		wp_enqueue_script( 'ajaxupload', $upthemes."js/ajaxupload.js", array( 'jquery' ) );
+	}
+
+}
+// Hook tumblog_enqueue_scripts() into admin_init action
+add_action( 'admin_enqueue_scripts', 'tumblog_enqueue_scripts' );
 
 /**
  * Define Markup for the Tumblog Metabox
