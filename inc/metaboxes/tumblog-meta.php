@@ -257,7 +257,7 @@ jQuery(function($){
 </script>
 <?php
 	
-	foreach($metaboxes as $metabox):
+	foreach( $metaboxes as $metabox ):
 	
 		$type = $metabox['type'];
 		$name = $metabox['name'];
@@ -411,47 +411,47 @@ function tumblog_save_postdata( $post_id ) {
 	// verify this came from the our screen and with proper authorization,
 	// because save_post can be triggered at other times
 		
-	if ( !wp_verify_nonce( $_POST['tumblog-boxes'], 'tumblog' )) {
+	if ( ! isset( $_POST['tumblog-boxes'] ) || ! wp_verify_nonce( $_POST['tumblog-boxes'], 'tumblog' ) ) {
 		return $post_id;
 	}
 	
 	// verify if this is an auto save routine. If it is our form has not been submitted, so we dont want
 	// to do anything
-	if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) 
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
 		return $post_id;
 	
 	// Check permissions
-	if ( 'page' == $_POST['post_type'] ) {
-		if ( !current_user_can( 'edit_page', $post_id ) )
+	if ( isset( $_POST['post_type'] ) && 'page' == $_POST['post_type'] ) {
+		if ( ! current_user_can( 'edit_page', $post_id ) )
 			return $post_id;
 	} else {
-		if ( !current_user_can( 'edit_post', $post_id ) )
+		if ( ! current_user_can( 'edit_post', $post_id ) )
 			return $post_id;
 	}
 	
 	// OK, we're authenticated: we need to find and save the data	
-	$image = $_POST['image'];
-	$videoembed = $_POST['video-embed'];
-	$videourl = $_POST['video-url'];
+	$image = ( isset( $_POST['image'] ) ? esc_url( $_POST['image'] ) : false );
+	$videoembed = ( isset( $_POST['video-embed'] ) ? esc_html( $_POST['video-embed'] ) : false );
+	$videourl = ( isset( $_POST['video-url'] ) ? esc_url( $_POST['video-url'] ) : false );
 	if( $videourl ) $videoembed = micro_convert_url_to_embed( $videourl );
-	$videoembed = $videoembed ? $videoembed : $_POST['video-embed'];
-	$quoteauthor = $_POST['quote-author'];
-	$quoteurl = $_POST['quote-url'];
-	$quotecopy = $_POST['quote-copy'];
-	$audio = $_POST['audio'];
-	$gallery = $_POST['gallery'];
-	$linkurl = $_POST['link-url'];
-    $linktext = $_POST['link-text'];
-	if($image) update_post_meta($post_id,'image',$image);
-	if($videoembed) update_post_meta($post_id,'video-embed',$videoembed);
-    if($videourl) update_post_meta($post_id,'video-url',$videourl);
-	if($quoteauthor) update_post_meta($post_id,'quote-author',$quoteauthor);
-	if($quotecopy) update_post_meta($post_id,'quote-copy',$quotecopy);
-    if($quoteurl) update_post_meta($post_id,'quote-url',$quoteurl);
-	if($audio) update_post_meta($post_id,'audio',$audio);
-	if($gallery) update_post_meta($post_id,'gallery',$gallery);
-	if($linkurl) update_post_meta($post_id,'link-url',$linkurl);
-    if($linktext) update_post_meta($post_id,'link-text',$linktext);
+	$videoembed = $videoembed ? $videoembed : esc_html( $_POST['video-embed'] );
+	$quoteauthor = ( isset( $_POST['quote-author'] ) ? esc_attr( $_POST['quote-author'] ) : false );
+	$quoteurl = ( isset( $_POST['quote-url'] ) ? esc_url( $_POST['quote-url'] ) : false );
+	$quotecopy = ( isset( $_POST['quote-copy'] ) ? wp_kses_post( $_POST['quote-copy'] ) : false );
+	$audio = ( isset( $_POST['audio'] ) ? esc_url( $_POST['audio'] ) : false );
+	$gallery = ( isset( $_POST['gallery'] ) && in_array( array( 'grid', 'list', 'slider' ), $_POST['gallery'] ) ? $_POST['gallery'] : false );
+	$linkurl = ( isset( $_POST['link-url'] ) ? esc_url( $_POST['link-url'] ) : false );
+    $linktext = ( isset( $_POST['link-text'] ) ? esc_attr( $_POST['link-text'] ) : false );
+	if( $image ) update_post_meta( $post_id, 'image', $image );
+	if( $videoembed ) update_post_meta( $post_id, 'video-embed', $videoembed );
+    if( $videourl ) update_post_meta( $post_id, 'video-url', $videourl );
+	if( $quoteauthor ) update_post_meta( $post_id, 'quote-author', $quoteauthor );
+	if( $quotecopy ) update_post_meta( $post_id, 'quote-copy', $quotecopy );
+    if( $quoteurl ) update_post_meta( $post_id, 'quote-url', $quoteurl );
+	if( $audio ) update_post_meta( $post_id, 'audio', $audio );
+	if( $gallery ) update_post_meta( $post_id, 'gallery', $gallery );
+	if( $linkurl ) update_post_meta( $post_id, 'link-url', $linkurl );
+    if( $linktext ) update_post_meta( $post_id, 'link-text', $linktext );
 
 }
 
