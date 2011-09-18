@@ -117,7 +117,7 @@ function micro_time_posted() {
 
     <div class="post-date">
         <?php
-        if( $up_options->showtime_format ):
+        if( 'human' == $up_options->showtime_format ):
             echo '<a href="' . get_permalink( $post->ID ) . '">' . human_time_diff( get_the_time( 'U' ), time() ) . ' ago</a>';
         else:
 			echo '<a href="' . get_permalink( $post->ID ) . '">';
