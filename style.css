@@ -291,6 +291,31 @@ legend      {font-weight: bold; font-size:1.2em;}
 .right {float: right;}
 .clear {clear: both; overflow: hidden; height: 0;}
 
+/* Alignment
+ *  --------------------
+ */
+.aligncenter {
+	text-align: center;
+	float:none;
+	clear:both;
+	display:block;
+	margin:0px auto;
+}
+.alignleft {
+	float:left;
+}
+.alignright {
+	float:right;
+}
+.alignnone {
+	display:block;
+}
+
+
+.link-pages {
+	clear:both;
+}
+
 .clearTop {margin-top: 0;}
 
 .small {font-size: .8em; margin-bottom: 1.875em; line-height: 1.5em; }
@@ -329,7 +354,7 @@ legend      {font-weight: bold; font-size:1.2em;}
 .contain_posts .format-image img{
 	margin: -35px -34px -20px -34px;
 	width: 562px;
-	max-width: 640px;
+	max-width: 500px;
 }
 
 /* @end */
@@ -656,8 +681,10 @@ legend      {font-weight: bold; font-size:1.2em;}
 	min-height: 60px;
 }
 
-.hentry img{
-	max-width: 100%;
+.hentry img,
+.wp-caption,
+.wp-caption-text {
+	max-width: 500px;
 	height: auto;
 }
 
@@ -718,6 +745,7 @@ legend      {font-weight: bold; font-size:1.2em;}
 }
 
 .post_content{
+	clear:both;
 	margin-bottom: 1em;
 }
 
