@@ -1,8 +1,8 @@
 <?php
-function register_theme_layout($args){
+function register_theme_layout( $args ){
     global $up_layouts;
-    extract($args);
-    $context = $context ? $context : 'global';
+    extract( $args );
+    $context = isset( $context ) ? $context : 'global';
     if($id && $name && $style && $image):
         $up_layouts[$id] = $args;
         return true;
@@ -67,7 +67,7 @@ function enqueue_theme_layout(){
                 $global = TRUE;
             endif;
         endforeach;
-        if($archive_override) wp_dequeue_style('up-layout-archive');
+        if ( isset( $archive_override ) && true == $archive_override ) wp_dequeue_style('up-layout-archive');
         if(!$queued && $global)wp_enqueue_style('up-layout-global', $up_layouts[$contexts['global']['id']]['style']);
     endif;
 }
