@@ -43,6 +43,7 @@
 		 * @param	bool	$strip_teaser	strip text prior to "More" link on Single Post view; default: true
 		 */
 		the_content(); 
+		wp_link_pages( array( 'before' => '<p class="link-pages">Pages: ' ) );
 		?>
     </div>
 		
