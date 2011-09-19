@@ -143,6 +143,20 @@ strong {
   font-weight: bold;
 }
 
+big {
+	font-size: 1.3em;
+}
+
+dl {
+	margin-bottom: 1em;
+}
+dt {
+	font-style: italic;
+}
+dd {
+	margin: 0px 10px;
+}
+
 img {
   color: transparent;
   font-size: 0;
@@ -172,6 +186,10 @@ caption {
   font-weight: normal;
   vertical-align: top;
   text-align: left;
+}
+
+pre {
+	white-space: pre-wrap;
 }
 
 q {
@@ -218,6 +236,8 @@ svg {
 
 body{
 	font: 14px/21px "Helvetica Neue", Helvetica, Arial, Tahoma, sans-serif;
+	direction:rtl;
+	unicode-bidi: embed;
 }
 
 .format-quote blockquote {
@@ -256,6 +276,22 @@ ol li{
 	margin: 0;
 	padding: 0;
 	list-style: none;
+}
+.post li {
+	margin: 0px 25px;
+	padding: 0;
+}
+
+.post ol li {
+	list-style: decimal inside none;
+}
+
+.post ul li {
+	list-style: disc inside none;
+}
+
+li.comment {
+	margin: 0;
 }
 
 p {margin: 0 0 1em;}

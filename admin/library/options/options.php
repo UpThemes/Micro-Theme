@@ -890,7 +890,7 @@ function upfw_typography($value,$attr){
 	                                'id' => $value['id']
 	                            );
 	                            /* Check For Hardcoded Fonts */
-	                            if(!$value['custom']):
+	                            if( ! isset( $value['custom'] ) ) :
 	                                if(is_array($fonts_option)):
 	                                    $fonts_option = array_merge($fonts_option, $new_font);
 	                                    delete_option('up_themes_'.UPTHEMES_SHORT_NAME.'_fonts');
