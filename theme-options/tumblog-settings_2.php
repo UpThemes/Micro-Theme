@@ -66,9 +66,9 @@ $options = array (
             3 => "audio",
             4 => "link",
             5 => "quote",
-            5 => "status",
-            5 => "aside",
-            5 => "video"
+            6 => "status",
+            7 => "aside",
+            8 => "video"
         )
     ),
     
@@ -95,9 +95,9 @@ $options = array (
             3 => "audio",
             4 => "link",
             5 => "quote",
-            5 => "status",
-            5 => "aside",
-            5 => "video"
+            6 => "status",
+            7 => "aside",
+            8 => "video"
         )
     ),
 
@@ -123,9 +123,9 @@ $options = array (
             3 => "audio",
             4 => "link",
             5 => "quote",
-            5 => "status",
-            5 => "aside",
-            5 => "video"
+            6 => "status",
+            7 => "aside",
+            8 => "video"
         )
     ),
     
@@ -151,9 +151,9 @@ $options = array (
             3 => "audio",
             4 => "link",
             5 => "quote",
-            5 => "status",
-            5 => "aside",
-            5 => "video"
+            6 => "status",
+            7 => "aside",
+            8 => "video"
         )
     )
 
