@@ -30,21 +30,17 @@
 	<?php micro_before_comments(); ?>
 
 	<?php 
-	if ( 
-	//
-	//
-	have_comments() 
-	) {
+	if ( have_comments() ) {
 		?>
-		<h2 class="commentsheader">Feedback</h2>
 		<?php
 		// Globalize variable that holds comments by type
 		global $comments_by_type;	
 		?>
-		<h3>Comments <?php if ( ! comments_open() ) { ?> <small>(Comments are closed)</small><?php } ?></h3>
+		<h2 id="comments-title"><?php comments_number(__("No Responses","micro"), __("One Response","micro"), __("% Responses","micro") ); ?></h3>
 
 		<?php $i = 0; ?>
-		<span id="comments-responses" style="font-weight:bold;"><?php comments_number('No Responses', 'One Response', '% Responses' );?> to &#8220;<?php the_title(); ?>&#8221;</span>
+		
+		<?php if ( ! comments_open() ) { ?> <p><?php _e("(Comments are closed)","micro"); ?></p><?php } ?>
 
 		<?php 
 		// If the paged comments setting is enabled, and enough comments exisst to cause comments to be paged
@@ -59,7 +55,7 @@
 		if ( get_comments_number() > '0' ) { 
 			?>
 			<ol class="commentlist">
-				<?php	wp_list_comments( 'type=comment&avatar_size=40' ); ?>
+				<?php wp_list_comments( 'type=comment&avatar_size=40' ); ?>
 			</ol>
 			<?php 
 		}
@@ -78,7 +74,7 @@
 		$comments_by_type = &separate_comments( $comments );
 		if ( ! empty( $comments_by_type['pings'] ) ) {  
 			?>
-			<h3 class='trackbackheader'>Trackbacks</h3>
+			<h3 class="trackbackheader"><?php _e("Trackbacks","micro"); ?></h3>
 			<ol class="trackbacklist">
 				<?php wp_list_comments( array( 'type' => 'pings', 'callback' => 'micro_comment_list_pings' ) ); ?>
 			</ol>
