@@ -33,6 +33,14 @@ $options = array (
             "Audio" => 'audio',
             "Link" => 'link',
             "Video" => 'video'
+        ),
+        "value" => array(
+            0 => "standard",
+            1 => "image",
+            2 => "gallery",
+            3 => "audio",
+            4 => "link",
+            5 => "video"
         )
     ),
     
@@ -50,7 +58,19 @@ $options = array (
             "Quote" => 'quote',
             "Status" => 'status',
             "Video" => 'video'
-        )),
+        ),
+        "value" => array(
+            0 => "standard",
+            1 => "image",
+            2 => "gallery",
+            3 => "audio",
+            4 => "link",
+            5 => "quote",
+            5 => "status",
+            5 => "aside",
+            5 => "video"
+        )
+    ),
     
     
     array(  "name" => "Display Time",
@@ -67,7 +87,19 @@ $options = array (
             "Quote" => 'quote',
             "Status" => 'status',
             "Video" => 'video'
-        )),
+        ),
+        "value" => array(
+            0 => "standard",
+            1 => "image",
+            2 => "gallery",
+            3 => "audio",
+            4 => "link",
+            5 => "quote",
+            5 => "status",
+            5 => "aside",
+            5 => "video"
+        )
+    ),
 
     array(  "name" => "Display Categories",
         "desc" => "Choose the post types on which you wish to display the categories.",
@@ -83,7 +115,19 @@ $options = array (
             "Quote" => 'quote',
             "Status" => 'status',
             "Video" => 'video'
-        )),
+        ),
+        "value" => array(
+            0 => "standard",
+            1 => "image",
+            2 => "gallery",
+            3 => "audio",
+            4 => "link",
+            5 => "quote",
+            5 => "status",
+            5 => "aside",
+            5 => "video"
+        )
+    ),
     
     array(  "name" => "Display Tags",
         "desc" => "Choose the post types on which you wish to display the tags.",
@@ -99,7 +143,19 @@ $options = array (
             "Quote" => 'quote',
             "Status" => 'status',
             "Video" => 'video'
-        ))
+        ),
+        "value" => array(
+            0 => "standard",
+            1 => "image",
+            2 => "gallery",
+            3 => "audio",
+            4 => "link",
+            5 => "quote",
+            5 => "status",
+            5 => "aside",
+            5 => "video"
+        )
+    )
 
         
         
