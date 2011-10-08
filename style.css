@@ -1,3 +1,5 @@
+/* @override http://www.chris-wallace.com/wp-content/themes/micro/style.css */
+
 /*
 Theme Name: Micro WP Microblog Framework
 Theme URI: http://upthemes.com/themes/micro/
@@ -236,8 +238,6 @@ svg {
 
 body{
 	font: 14px/21px "Helvetica Neue", Helvetica, Arial, Tahoma, sans-serif;
-	direction:rtl;
-	unicode-bidi: embed;
 }
 
 .format-quote blockquote {
@@ -432,10 +432,35 @@ a img.aligncenter {
 	padding: 8px;
 }
 
-.contain_posts .format-image img{
-	margin: -35px -34px -20px -34px;
-	width: 562px;
-	max-width: 500px;
+.contain_posts .format-image{
+	margin-bottom: 65px;
+}
+
+.contain_posts .format-image .post_content{
+	margin: -35px -34px -20px -33px;
+	width: 561px;
+	max-width: 561px;
+}
+
+.contain_posts .format-image .post_content img{
+	width: auto;
+	max-width: 100%;
+}
+
+.contain_posts .format-image .post_content p{
+	padding-left: 34px;
+	padding-right: 34px;
+	padding-top: 1em;
+}
+
+.contain_posts .format-image .post-meta{
+	border-top: none;
+}
+
+.rtl.contain_posts .format-image .post_content{
+	margin: -35px -34px -20px 3px;
+	width: 561px;
+	max-width: 561px;
 }
 
 /* @end */
@@ -1243,27 +1268,6 @@ div.searchresults{
 	color: #222;
 }
 
-#primary a,
-#footer a,
-.post_content a img,
-.navigation a{
-	transition: .15s all linear;
-	-moz-transition: .15s all linear;
-	-webkit-transition: .15s all linear;
-	-o-transition: .15s all linear;
-}
-
-#primary a:hover,
-#footer a:hover,
-.post_content a:hover img,
-.navigation a:hover{
-	opacity: 0.7;
-	-moz-opacity: 0.7;
-	-webkit-opacity: 0.7;
-	-khtml-opacity: 0.7;
-	filter: alpha(opacity=70);
-}
-
 .widgets_dark #primary,
 .widgets_dark #footer,
 .widgets_dark .navigation,
@@ -1391,6 +1395,8 @@ div.searchresults{
 
 body.rtl,
 body.rtl *{
+	directon: rtl;
+	unicode-bidi: embed;
 	text-align: right;
 }
 
@@ -1411,7 +1417,7 @@ body.rtl .post-type a{
 	text-align: left;
 }
 
-/* @end */
+/* @end */	
 
 .mobile_site_header{
 	margin: 20px auto 10px auto;
