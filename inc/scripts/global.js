@@ -7,4 +7,5 @@ jQuery(window).load(function() {
 		animation: "slide",
     	controlsContainer: '.flex-container'
 	});
+	jQuery(".post_content").fitVids();
 });
