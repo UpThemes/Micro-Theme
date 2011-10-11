@@ -923,7 +923,7 @@ function micro_content( $content ) {
 		break;
 	
 		case 'video':
-			$content .= micro_tumblog_embed( array( "id" => $post->ID, "width" => CONTENT_WIDTH, "return" => true ) );
+			$content .= micro_tumblog_embed( array( "id" => $post->ID, "return" => true ) );
 		break;
 	
 		case 'gallery':
@@ -932,7 +932,7 @@ function micro_content( $content ) {
 		
 		case 'image':
 			if( function_exists( 'woo_tumblog_image' ) )
-				$content .= woo_tumblog_image( array("id" => get_the_ID(), "width" => CONTENT_WIDTH, "return" => true ) );
+				$content .= woo_tumblog_image( array("id" => get_the_ID(), "width" => CONTENT_WIDTH ) );
 			elseif( has_post_thumbnail() )
 				$content .= get_the_post_thumbnail( 'full-width-image' );
 		break;
