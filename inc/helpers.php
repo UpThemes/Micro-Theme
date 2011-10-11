@@ -44,12 +44,16 @@
  * 
  */
 function micro_convert_url_to_embed( $url ) {
+
+	$w = CONTENT_WIDTH;
+	$h = ( CONTENT_WIDTH / 16 ) * 9;
+	
     if ( preg_match( '/youtube/', $url ) ) :
         $youtube = parse_url( $url );
         parse_str( $youtube[query], $youtube );
         $id = $youtube['v'];
         $embed = '
-            <object type="application/x-shockwave-flash" style="width:500px; height:410px;" data="http://www.youtube.com/v/'.$id.'">
+            <object type="application/x-shockwave-flash" width="'.$w.'" height="'.$h.'" data="http://www.youtube.com/v/'.$id.'">
                 <param name="movie" value="http://www.youtube.com/v/'.$id.'" />
             </object>';
         return $embed;
@@ -57,7 +61,7 @@ function micro_convert_url_to_embed( $url ) {
         $vimeo = explode( '/', $url );
         $id = $vimeo[3];
         $embed = '
-            <object type="application/x-shockwave-flash" style="width:500px; height:410px;" data="http://vimeo.com/moogaloop.swf?clip_id='.$id.'&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=ff9933&amp;fullscreen=1">
+            <object type="application/x-shockwave-flash" width="'.$w.'" height="'.$h.'" data="http://vimeo.com/moogaloop.swf?clip_id='.$id.'&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=ff9933&amp;fullscreen=1">
                 <param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id='.$id.'&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=ff9933&amp;fullscreen=1" />
             </object>';
         return $embed;

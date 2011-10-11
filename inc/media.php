@@ -43,20 +43,20 @@ function micro_resize_video( $markup ) {
 	$replacements = array();
 	if( ! empty( $w ) )
 	{
-	$patterns[] = '/width="([0-9]+)"/';
-	$patterns[] = '/width:([0-9]+)/';
+	$patterns[] = '/width="([0-9]+)px;"/';
+	$patterns[] = '/width:([0-9]+)px;/';
 	
-	$replacements[] = 'width="' . $w . '"';
-	$replacements[] = 'width:' . $w;
+	$replacements[] = '';
+	$replacements[] = '';
 	}
 	
 	if( !empty($h) )
 	{
-	$patterns[] = '/height="([0-9]+)"/';
-	$patterns[] = '/height:([0-9]+)/';
+	$patterns[] = '/height="([0-9]+)px;"/';
+	$patterns[] = '/height:([0-9]+)px;/';
 	
-	$replacements[] = 'height="' . $h . '"';
-	$replacements[] = 'height:' . $h;
+	$replacements[] = '';
+	$replacements[] = '';
 	}
 	
 	return preg_replace( $patterns, $replacements, $markup );

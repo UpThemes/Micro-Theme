@@ -55,6 +55,7 @@ function micro_add_scripts(){
 	wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/inc/scripts/modernizr-2.0.6.min.js' );
 	// Moved form micro_init() function
 	wp_enqueue_script( 'scrolling', get_template_directory_uri() . '/inc/scripts/scrolling/scrolling.js' );
+	wp_enqueue_script( 'fitvids', get_template_directory_uri() . '/inc/scripts/jquery.fitvids.js' );
 	// Enqueue comment-reply script
 	if ( is_single() && comments_open() ) {
 		if ( get_option( 'thread_comments' ) ) {

@@ -448,7 +448,7 @@ function tumblog_save_postdata( $post_id ) {
 	$quoteurl = ( isset( $_POST['quote-url'] ) ? esc_url( $_POST['quote-url'] ) : false );
 	$quotecopy = ( isset( $_POST['quote-copy'] ) ? wp_kses_post( $_POST['quote-copy'] ) : false );
 	$audio = ( isset( $_POST['audio'] ) ? esc_url( $_POST['audio'] ) : false );
-	$gallery = ( isset( $_POST['gallery'] ) && in_array( array( 'grid', 'list', 'slider' ), $_POST['gallery'] ) ? $_POST['gallery'] : false );
+	$gallery = ( isset( $_POST['gallery'] ) && in_array( $_POST['gallery'], array( 'grid', 'list', 'slider' ) ) ? $_POST['gallery'] : false );
 	$linkurl = ( isset( $_POST['link-url'] ) ? esc_url( $_POST['link-url'] ) : false );
     $linktext = ( isset( $_POST['link-text'] ) ? esc_attr( $_POST['link-text'] ) : false );
 	if( $image ) update_post_meta( $post_id, 'image', $image );
