@@ -251,14 +251,17 @@ add_action( 'init', 'micro_upfw_config' );
  */
 function micro_header_style() {
     ?><style type="text/css">
-        .logo {
+        .blog-information a{
             background: url(<?php header_image(); ?>);
             width: <?php echo HEADER_IMAGE_WIDTH; ?>px;
             height: <?php echo HEADER_IMAGE_HEIGHT; ?>px;
             text-indent: -9000px;
             text-align: left;
-            margin: 0 auto;
+            margin: 0 auto 10px;
             max-width: 100%;
+			display: block;
+			background-position: center center;
+			background-repeat: no-repeat;
         }
     </style><?php
 }
@@ -270,11 +273,22 @@ function micro_header_style() {
  */
 function micro_admin_header_style() {
     ?><style type="text/css">
-        .logo {
+        #headimg {
             width: <?php echo HEADER_IMAGE_WIDTH; ?>px;
             height: <?php echo HEADER_IMAGE_HEIGHT; ?>px;
-            background: no-repeat;
+			background-position: center center;
+			background-repeat: no-repeat;
         }
+		#headimg #name{
+			text-indent: -9000px;
+			overflow: hidden;
+			display: block;	
+		}
+		
+		#desc{
+			display: none;
+		}
+		
     </style><?php
 }
 
