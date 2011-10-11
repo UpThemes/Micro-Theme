@@ -1,37 +1,35 @@
 @media screen and (max-width:800px) {
 
 	body{
-		width: auto;
-		padding: 10px 20px;
+		width: auto !important;
+		padding: 10px 20px !important;
 	}
 
 	h1.title,
 	h2.title{
-		font-size: 1.3em;
-		line-height: 1.2em;
+		font-size: 1.3em !important;
+		line-height: 1.2em !important;
 	}
 
 	#main,
 	.container{
-		width: auto;
+		width: auto !important;
 	}
 	
 	#primary{
-		width: 26%;
+		width: 26% !important;
 	}
 	
 	#content{
-		width: 70%;
+		width: 70% !important;
 	}
 
 	#content img,
-	#content video,
-	#content object,
 	#content audio{
-		width: auto;
-		max-width: 100%;
+		width: auto !important;
+		max-width: 100% !important;
 		height: auto !important;
-		margin: 0 auto;
+		margin: 0 auto !important;
 	}
 
 }
@@ -39,19 +37,19 @@
 @media screen and (max-width:480px) {
 	
 	.mobile_site_header{
-		display: block;
+		display: block !important;
 	}
 	
 	#content,
 	#primary,
 	#main{
-		float: none;
-		width: auto;
+		float: none !important;
+		width: auto !important;
 	}
 	
 	#primary{
-		margin-top: 0;
-		width: auto;
+		margin-top: 0 !important;
+		width: auto !important;
 	}
 	
 	#primary .site-details{
