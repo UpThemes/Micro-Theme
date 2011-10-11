@@ -81,7 +81,7 @@ function micro_resize_video( $markup ) {
  * @since	Micro 1.0
  * 
  */
-function micro_tumblog_embed() {
+function micro_tumblog_embed($id) {
 
 	//Defaults
 	$id = null;	
@@ -93,6 +93,6 @@ function micro_tumblog_embed() {
         
 	$custom_field = get_post_meta( $id, 'video-embed', true );
 	
-    echo micro_resize_video( $custom_field );
+    echo $custom_field;
 
 }
