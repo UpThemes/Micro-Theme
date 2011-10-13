@@ -59,7 +59,7 @@ add_action( 'add_meta_boxes_post', 'tumblog_customize_meta_boxes' );
 function tumblog_enqueue_scripts() {
 	
 	global $pagenow;
-	if ( 'post.php' == $pagenow ) {
+	if ( 'post.php' == $pagenow || 'post-new.php' == $pagenow ) {
 		$upthemes =  THEME_DIR.'/admin/';
 		wp_enqueue_script( 'ajaxupload', $upthemes."js/ajaxupload.js", array( 'jquery' ) );
 	}
