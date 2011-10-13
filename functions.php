@@ -193,7 +193,7 @@ require_once( get_template_directory() . '/inc/update.php' );
 function micro_theme_init(){
 
 	// Setup content width
-	define( 'CONTENT_WIDTH', 500 );
+	define( 'CONTENT_WIDTH', 700 );
 
 	global $content_width;
 
