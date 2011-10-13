@@ -16,8 +16,10 @@
 /* Browser Resets */
 .flexslider a {outline: none;}
 .slides,
+.slides li,
 .flex-control-nav,
-.flex-direction-nav {margin: 0; padding: 0; list-style: none;}
+.flex-direction-nav,
+.flex-direction-nav li {margin: 0; padding: 0; list-style: none; }
 
 /* No JavaScript Fallback */
 /* If you are not using another script, such as Modernizr, make sure you

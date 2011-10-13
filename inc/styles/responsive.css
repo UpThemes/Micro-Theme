@@ -26,11 +26,9 @@
 
 	#content img,
 	#content audio{
-		width: auto !important;
-		max-width: 100% !important;
-		height: auto !important;
-		margin: 0 auto !important;
+		max-width: 100%;
 	}
+	
 
 }
 
@@ -54,6 +52,15 @@
 	
 	#primary .site-details{
 		display: none;
+	}
+	
+	#content img{
+		width: auto;
+	}
+
+	#content .gallery-grid img{
+		margin-bottom: 10px;
+		display: block;
 	}
 	
 	#footer > *,
