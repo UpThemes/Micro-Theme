@@ -45,6 +45,7 @@
 		the_content(); 
 		wp_link_pages( array( 'before' => '<p class="link-pages">Pages: ' ) );
 		?>
+		<div class="clear"></div>
     </div>
 		
 	<?php 

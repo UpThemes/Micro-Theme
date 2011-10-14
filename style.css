@@ -242,12 +242,14 @@ body{
 	font-family: Georgia, "Times New Roman", serif;;
 }
 
-h1 {font-size: 2.1em; margin-bottom: .5em;}
+h1 {font-size: 2.1em; margin-bottom: 1em;}
 h2 {font-size: 1.3em; margin-bottom: 1em;}
 h3 {font-size: 1.2em;}
 h4 {font-size: 1em;}
 h5 {font-size: 1em;}
 h6 {font-size: 1em;}
+
+.widgets_light #content > h1{ color: white; }
 
 .title{
 	font-size: 1.2em;
@@ -662,7 +664,7 @@ a img.aligncenter {
 	margin-bottom: 0;
 }
 
-#primary .navigation a{
+#primary #navigation a{
 	font-weight: bold;
 	font-size: 11px;
 	text-transform: uppercase;
@@ -1100,6 +1102,10 @@ a img.aligncenter {
 	margin-bottom: 20px;
 }
 
+p.form-allowed-tags{
+	font-size: .9em;
+}
+
 #respond #cancel-comment-reply-link{
 	position: absolute;
 	top: 13px;
@@ -1290,12 +1296,15 @@ div.searchresults{
 #primary a,
 #footer a,
 .navigation a,
+.widgets_dark #post-navigation a,
 #primary a:active,
 #footer a:active,
 .navigation a:active,
+.widgets_dark #post-navigation a:active,
 #primary a:visited,
 #footer a:visited,
-.navigation a:visited{
+.navigation a:visited,
+.widgets_dark #post-navigation a:visited{
 	color: #222;
 }
 
@@ -1305,13 +1314,23 @@ div.searchresults{
 .widgets_dark #primary a,
 .widgets_dark #footer a,
 .widgets_dark .navigation a,
+.widgets_dark #post-navigation a,
 .widgets_dark #primary a:active,
 .widgets_dark #footer a:active,
 .widgets_dark .navigation a:active,
+.widgets_dark #post-navigation a:active,
 .widgets_dark #primary a:visited,
 .widgets_dark #footer a:visited,
-.widgets_dark .navigation a:visited{
+.widgets_dark .navigation a:visited,
+.widgets_dark #post-navigation a:visited{
 	color: #111;
+	text-shadow: 0 1px 1px #fff;
+	-moz-text-shadow: 0 1px 1px #fff;
+	-webkit-text-shadow: 0 1px 1px #fff;
+	text-shadow-color: rgba(255,255,255,0.5);
+	-moz-text-shadow-color: rgba(255,255,255,0.5);
+	-webkit-text-shadow-color: rgba(255,255,255,0.5);
+	font-weight: bold;
 }
 
 .widgets_light #primary,
@@ -1321,13 +1340,23 @@ div.searchresults{
 .widgets_light #primary a,
 .widgets_light #footer a,
 .widgets_light .navigation a,
+.widgets_light #post-navigation a,
 .widgets_light #primary a:active,
 .widgets_light #footer a:active,
 .widgets_light .navigation a:active,
+.widgets_light #post-navigation a:active,
 .widgets_light #primary a:visited,
 .widgets_light #footer a:visited,
-.widgets_light .navigation a:visited{
+.widgets_light .navigation a:visited,
+.widgets_light #post-navigation a:visited{
 	color: #fff;
+	text-shadow: 0 1px 1px #000;
+	-moz-text-shadow: 0 1px 1px #000;
+	-webkit-text-shadow: 0 1px 1px #000;
+	text-shadow-color: rgba(0,0,0,0.5);
+	-moz-text-shadow-color: rgba(0,0,0,0.5);
+	-webkit-text-shadow-color: rgba(0,0,0,0.5);
+	font-weight: bold;
 }
 
 .contain_widgets #primary .widget,
@@ -1343,6 +1372,9 @@ div.searchresults{
 .contain_widgets #footer .widget a:visited,
 .contain_widgets .navigation .widget a:visited{
 	color: #111;
+	text-shadow: none;
+	-moz-text-shadow: none;
+	-webkit-text-shadow: none;
 }
 
 .widgets_light #primary .site-details,
@@ -1361,14 +1393,22 @@ div.searchresults{
 
 /* @group Navigation Bar Styles */
 
-#post-navigation{ margin-bottom: 20px; text-align: center; }
+#post-navigation{ margin-bottom: 20px; text-align: center; font-size: .9em; }
 #post-navigation li:first-child a{ margin-left: 0; }
 #post-navigation li{ display: inline-block; }
 #post-navigation li a{ text-align: left; display: inline-block; padding: 4px 8px; }
 
-#post-navigation li.number{ font-family: Helvetica; text-transform: uppercase; font-size: 11px; line-height: 1.8em; font-weight: bold; color: #000; padding: 4px 8px; display: inline; }
+#post-navigation li.number{ font-family: Helvetica; text-transform: uppercase; line-height: 1.8em; font-weight: bold; color: #000; padding: 4px 8px; display: inline; }
 
-.widgets_light #post-navigation li.number{ color: #fff; }
+.widgets_light #post-navigation li.number{ 
+	color: #fff;
+	text-shadow: 0 1px 1px #000;
+	-moz-text-shadow: 0 1px 1px #000;
+	-webkit-text-shadow: 0 1px 1px #000;
+	text-shadow-color: rgba(0,0,0,0.5);
+	-moz-text-shadow-color: rgba(0,0,0,0.5);
+	-webkit-text-shadow-color: rgba(0,0,0,0.5);
+ }
 
 /* @end */
 
