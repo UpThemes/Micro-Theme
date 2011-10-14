@@ -4,7 +4,7 @@ jQuery(window).load(function() {
 		directionNav: true,
 		slideshow: false,
 		controlNav: false,
-		animation: "slide",
+		animation: "fade",
     	controlsContainer: '.flex-container'
 	});
 	jQuery(".post_content").fitVids();

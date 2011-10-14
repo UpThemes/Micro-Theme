@@ -30,7 +30,7 @@
 
 /* FlexSlider Default Theme
 *********************************/
-.flexslider {background: #fff; border: 0; position: relative; margin-bottom: 18px; }
+.flexslider {background: #fff; border: 0; position: relative; overflow: auto; }
 .flexslider .slides > li {position: relative;}
 /* Suggested container for "Slide" animation setups. Can replace this with your own, if you wish */
 .flex-container {zoom: 1; position: relative;}
