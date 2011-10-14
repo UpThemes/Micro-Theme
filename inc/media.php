@@ -93,6 +93,6 @@ function micro_tumblog_embed($id) {
         
 	$custom_field = get_post_meta( $id, 'video-embed', true );
 	
-    echo $custom_field;
+    echo '<div class="video-spot">' . $custom_field . "</div>";
 
 }

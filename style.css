@@ -416,20 +416,7 @@ a img.aligncenter {
 	margin-bottom: 60px;
 }
 
-.contain_posts .format-quote,
-.contain_posts .format-text,
-.contain_posts .format-standard,
-.contain_posts .format-chat,
-.contain_posts .format-audio,
-.contain_posts .format-aside,
-.contain_posts .format-status,
-.contain_posts .format-link,
-.contain_posts .format-gallery,
-body.attachment .contain_posts #content .hentry,
-body.page.contain_posts #content .hentry,
-body.post.contain_posts #content .hentry,
-.contain_posts .format-video .post-meta,
-.contain_posts .format-image .post-meta,
+.contain_posts .hentry,
 .contain_widgets .widget,
 .single.contain_posts .comments,
 .page.contain_posts .comments,
@@ -451,19 +438,8 @@ body.post.contain_posts #content .hentry,
 	padding: 30px;
 }
 
-.contain_posts .format-video .post_content,
-.contain_posts .format-image .post_content{
-	margin-bottom: 0;
-	box-shadow: 0 0 1px rgba(0, 0, 0, 0.4),
-				0 0 8px rgba(0, 0, 0, 0.1);
-	-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.4),
-				0 0 8px rgba(0, 0, 0, 0.1);
-	-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.4),
-				0 0 8px rgba(0, 0, 0, 0.1);
-}
-
-.contain_posts .format-video .post-meta,
-.contain_posts .format-image .post-meta{
+.contain_posts .format-video,
+.contain_posts .format-image{
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
 	-moz-border-radius-topright: 0;
@@ -473,14 +449,19 @@ body.post.contain_posts #content .hentry,
 	min-height: 0;
 }
 
-.contain_posts .format-quote .post-meta,
-.contain_posts .format-text .post-meta,
-.contain_posts .format-standard .post-meta,
-.contain_posts .format-chat .post-meta,
-.contain_posts .format-aside .post-meta,
-.contain_posts .format-status .post-meta,
-.contain_posts .format-gallery .post-meta,
-.contain_posts .format-link .post-meta{
+.contain_posts .format-video .post_content > a,
+.contain_posts .format-image .post_content > a,
+.contain_posts .flex-container,
+.contain_posts .format-video .post_content > .video-spot,
+.contain_posts .format-image .post_content > .video-spot,
+.contain_posts .format-video .post_content > video,
+.contain_posts .format-image .post_content > video{
+	margin: -34px -34px 0 -34px;
+	display: block;
+	position: relative;
+}
+
+.contain_posts .post-meta{
 	border-top: 1px solid #e9e9e9;
 	margin: 20px -30px -10px -30px;
 	position: relative;
@@ -497,18 +478,25 @@ body.post.contain_posts #content .hentry,
 	margin: 0;
 }
 
+.contain_posts .format-image .post-meta,
+.contain_posts .format-video .post-meta{
+	margin-top: 0;
+	border-top-width: 0;
+}
+
 .contain_posts .format-image .post_content img{
 	width: auto;
 	max-width: 100%;
+	margin-bottom: 20px;
+	display: block;
 }
 
-.contain_posts .format-image .post_content p{
-	padding-left: 34px;
-	padding-right: 34px;
-	padding-top: 1em;
+.contain_posts .format-gallery .gallery-grid{
+	margin-bottom: -10px;
+	padding-bottom: 0;
 }
 
-.gallery-grid img{
+.contain_posts .format-gallery .gallery-grid img{
 	width: 30%;
 	margin-right: 5%;
 	margin-bottom: 4%;
