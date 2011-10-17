@@ -522,6 +522,16 @@ a img.aligncenter {
 	display: block;
 }
 
+.contain_posts .format-image .title,
+.contain_posts .format-video .title,
+.contain_posts .format-gallery .title{
+	margin-bottom: 65px;
+}
+
+.contain_posts .format-image .post_content img.woo-image{
+	margin-bottom: 0;
+}
+
 .contain_posts .format-gallery .gallery-grid{
 	margin-bottom: -10px;
 	padding-bottom: 0;
@@ -694,9 +704,7 @@ a img.aligncenter {
 }
 
 #primary #navigation a{
-	font-weight: bold;
-	font-size: 11px;
-	text-transform: uppercase;
+	font-size: 12px;
 	line-height: 18px;
 }
 
@@ -1353,13 +1361,6 @@ div.searchresults{
 .widgets_dark .navigation a:visited,
 .widgets_dark #post-navigation a:visited{
 	color: #111;
-	text-shadow: 0 1px 1px #fff;
-	-moz-text-shadow: 0 1px 1px #fff;
-	-webkit-text-shadow: 0 1px 1px #fff;
-	text-shadow-color: rgba(255,255,255,0.5);
-	-moz-text-shadow-color: rgba(255,255,255,0.5);
-	-webkit-text-shadow-color: rgba(255,255,255,0.5);
-	font-weight: bold;
 }
 
 .widgets_light #primary,
@@ -1379,13 +1380,6 @@ div.searchresults{
 .widgets_light .navigation a:visited,
 .widgets_light #post-navigation a:visited{
 	color: #fff;
-	text-shadow: 0 1px 1px #000;
-	-moz-text-shadow: 0 1px 1px #000;
-	-webkit-text-shadow: 0 1px 1px #000;
-	text-shadow-color: rgba(0,0,0,0.5);
-	-moz-text-shadow-color: rgba(0,0,0,0.5);
-	-webkit-text-shadow-color: rgba(0,0,0,0.5);
-	font-weight: bold;
 }
 
 .contain_widgets #primary .widget,
