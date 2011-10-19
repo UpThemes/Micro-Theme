@@ -466,7 +466,7 @@ function micro_post_title(){
 	$post_icon_pref = 'icon-' . $post_icon_pref;
 	$post_icon_link = ( get_post_format() ? get_post_format_link( get_post_format() ) : home_url( '/' ) );
 		
-		if( ! $postformat || $postformat == 'aside' || $postformat == 'status' || ( isset( $up_options->showtitle ) && in_array( $postformat, $up_options->showtitle ) ) ) : ?>
+		if( ! $postformat || $postformat == 'aside' || $postformat == 'status' || $postformat == 'link' || ( isset( $up_options->showtitle ) && in_array( $postformat, $up_options->showtitle ) ) ) : ?>
 		<div class="post-type <?php echo $post_icon_pref;?>">
 			<a href="<?php echo $post_icon_link; ?>"><?php echo $post->ID; ?></a>
 		</div>
@@ -484,7 +484,7 @@ function micro_post_title(){
 	$title = get_post_meta( get_the_ID(), 'link-text', true );
 	$title = $title ? $title . " &#8594;" : get_the_title();
 	
-	if( ! $postformat || $postformat == 'aside' || $postformat == 'status' || ( isset( $up_options->showtitle ) && in_array( $postformat, $up_options->showtitle ) ) ):
+	if( !$postformat || $postformat == 'aside' || $postformat == 'status' || $postformat == 'link' || ( isset( $up_options->showtitle ) && in_array( $postformat, $up_options->showtitle ) ) ):
 	    if( ( $url && 'link' == get_post_format() ) || ! is_singular() ): ?>
 			<h2 class="title"><a href="<?php echo $url; ?>"><?php echo $title; ?></a></h2>
 	    <?php else: ?>
