@@ -62,7 +62,8 @@ function micro_add_scripts(){
 			wp_enqueue_script( 'comment-reply' );
 		}
 		global $up_options;
-		wp_enqueue_script( 'disqus', 'http://disqus.com/forums/' . $up_options->disqus . '/embed.js', array(), false, true );
+		if( $up_options->disqus )
+			wp_enqueue_script( 'disqus', 'http://disqus.com/forums/' . $up_options->disqus . '/embed.js', array(), false, true );
 	}
 
 }

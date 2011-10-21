@@ -28,7 +28,35 @@
 	#content audio{
 		max-width: 100%;
 	}
+
+	div.jp-audio{
+		width: auto;
+	}
 	
+	div.jp-progress-container{
+		width: auto;
+		left: 34px;
+	    right: 86px;
+	}
+	
+	div.jp-audio div.jp-type-single div.jp-progress{
+	    left: 8px;
+	    position: absolute;
+	    right: 8px;
+	    width: auto;
+	}
+
+	div.jp-volume-bar-container{
+		right: 25px;
+		left: auto;
+	}
+
+	div.jp-audio div.jp-type-single div.jp-volume-bar{
+		left: auto;
+		right: auto;
+	}
+	
+	div.jp-audio div.jp-type-single a.jp-mute, div.jp-audio div.jp-type-single a.jp-unmute { left: auto; right: 5px; }
 
 }
 
