@@ -47,7 +47,7 @@ function micro_add_scripts(){
 	
 	/* JPlayer Mini Audio Player */
 	wp_enqueue_script( 'jplayer', get_template_directory_uri() . '/inc/scripts/jplayer/jquery.jplayer.min.js', array( 'jquery' ) );
-    wp_enqueue_script( 'fancybox', get_template_directory_uri() . '/inc/scripts/fancybox/jquery.fancybox-1.3.4.pack.js', array( 'jquery' ) );
+    wp_enqueue_script( 'view', get_template_directory_uri() . '/inc/scripts/view/view.min.js?auto', array( 'jquery' ) );
     wp_enqueue_script( 'fancybox-mousewheel', get_template_directory_uri() . '/inc/scripts/fancybox/jquery.mousewheel-3.0.4.pack.js', array( 'jquery' ) );
     wp_enqueue_script( 'fancybox-easing', get_template_directory_uri() . '/inc/scripts/fancybox/jquery.easing-1.3.pack.js', array( 'jquery' ) );
 	wp_enqueue_script( 'flexslider', get_template_directory_uri() . '/inc/scripts/flexslider/jquery.flexslider-min.js', array( 'jquery' ) );

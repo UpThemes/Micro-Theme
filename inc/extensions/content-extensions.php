@@ -310,7 +310,7 @@ function micro_image_grid( $images ){
 	$count;
 	foreach( $images as $id => $image ) :
 		$count++;
-		$class = $count === 4 ? 'last' : '';
+		$class = $count === 4 ? 'last view' : ' view';
 		$title = get_the_title( $id );
 		$output .= "<a class='$class' rel='grid-$rand' title='$title' href='{$image['full']}'><img src='{$image['medium']}' alt='$title' /></a>";
 		$count = $count === 4 ? 0 : $count;
@@ -353,7 +353,7 @@ function micro_image_list( $images ){
 	$rand = wp_rand( 0, 999999 );
 	foreach( $images as $id => $image ):
 		$title = get_the_title( $id );
-		$output .= "<a class='$class' rel='grid-$rand' title='$title' href='{$image['full']}'><img src='{$image['contentwidth']}' alt='$title' /></a>";
+		$output .= "<a class='view' rel='grid-$rand' title='$title' href='{$image['full']}'><img src='{$image['contentwidth']}' alt='$title' /></a>";
 	endforeach;
 	$output .= '</div>';
 	return $output;
@@ -395,7 +395,7 @@ function micro_image_slider( $images ){
 			<ul class="slides">';
 					foreach( $images as $id => $image ):
 						$title = get_the_title( $id );
-						$output .= "<li><a title='$title' href='{$image['full']}'><img src='{$image['contentwidth']}' alt='$title' /></a></li>";
+						$output .= "<li><a class='view' title='$title' rel='grid-$rand' href='{$image['full']}'><img src='{$image['contentwidth']}' alt='$title' /></a></li>";
 					endforeach;
 					$output .= '
 			</ul>

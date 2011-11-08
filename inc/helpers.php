@@ -144,14 +144,14 @@ if ( ! function_exists( 'woo_tumblog_image' ) ) {
 		} elseif ( get_option('woo_post_image_support') == 'true' AND !empty($thumb_id) ) {
 		
 			if(is_singular() && $single == false){
-				$img_link = get_the_post_thumbnail($id,'single-post-thumbnail',array('class' => 'woo-image ' . $class));	
+				$img_link = get_the_post_thumbnail($id,'single-post-thumbnail',array('class' => 'post-image ' . $class));	
 			} else if(is_singular() && $single == true){
-				$img_link = get_the_post_thumbnail($id,array($width,NULL),array('class' => 'woo-image ' . $class));
+				$img_link = get_the_post_thumbnail($id,array($width,NULL),array('class' => 'post-image ' . $class));
 			} else {
 				if(!empty($width)){
-					$img_link = get_the_post_thumbnail($id,array($width,NULL),array('class' => 'woo-image ' . $class));
+					$img_link = get_the_post_thumbnail($id,array($width,NULL),array('class' => 'post-image ' . $class));
 				} else {
-					$img_link = get_the_post_thumbnail($id,array(),array('class' => 'woo-image ' . $class));
+					$img_link = get_the_post_thumbnail($id,array(),array('class' => 'post-image ' . $class));
 				}
 			}
 		
@@ -232,9 +232,9 @@ if ( ! function_exists( 'woo_tumblog_image' ) ) {
 			
 		// Set standard class
 		if ( $class )
-			$class = 'woo-image ' . $class;
+			$class = 'post-image ' . $class;
 		else 
-			$class = 'woo-image';
+			$class = 'post-image';
 	
 		// Do check to verify if images are smaller then specified.
 		$force_all = get_option('woo_force_all');
@@ -255,7 +255,7 @@ if ( ! function_exists( 'woo_tumblog_image' ) ) {
 			} else {  // Default - output with link				
 	
 				if ( is_singular() ) {
-					$rel = 'rel="lightbox"';
+					$rel = 'rel="post-' . $id . '"';
 					$href = false;  
 				} else { 
 					$href = get_permalink($id);
@@ -268,7 +268,7 @@ if ( ! function_exists( 'woo_tumblog_image' ) ) {
 				if($href == false){
 					$output .= $img_link;
 				} else {
-					$output .= '<a '.$title.' href="' . $href .'" '.$rel.'>' . $img_link . '</a>';
+					$output .= '<a '.$title.' class="view" href="' . $href .'" '.$rel.'>' . $img_link . '</a>';
 				}
 				
 				$output .= $after;  
@@ -343,7 +343,7 @@ if ( ! function_exists( 'woo_tumblog_image' ) ) {
 					}
 				
 					$output .= $before; 
-					$output .= '<a '.$title.' href="' . $href .'" '.$rel.'>' . $img_link . '</a>';
+					$output .= '<a '.$title.' class="view" href="' . $href .'" '.$rel.'>' . $img_link . '</a>';
 					$output .= $after;  
 				}
 			}
@@ -390,7 +390,7 @@ if ( ! function_exists( 'woo_tumblog_image' ) ) {
 					}
 					 
 					$output .= $before;   
-					$output .= '<a href="' . $href .'" '. $rel .'>' . $img_link . '</a>';
+					$output .= '<a class="view" href="' . $href .'" '. $rel .'>' . $img_link . '</a>';
 					$output .= $after;   
 				}
 			}
