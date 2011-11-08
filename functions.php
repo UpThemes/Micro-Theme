@@ -203,6 +203,7 @@ function micro_theme_init(){
 	
 	// Add Theme support for Post Thumbnails
 	add_theme_support( 'post-thumbnails' );
+	
 	// Add custom image sizes
 	add_image_size( 'full-width-image', $content_width, 99999, 0 );
 	
